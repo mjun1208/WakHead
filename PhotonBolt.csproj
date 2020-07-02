@@ -284,35 +284,20 @@
     <Reference Include="LitJson">
       <HintPath>D:/WakHead/Assets/LitJson.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Plugins/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit.platform.dotnet">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.dotnet.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt.compiler">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/editor/bolt.compiler.dll</HintPath>
-    </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt.editor">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/editor/bolt.editor.dll</HintPath>
+    <Reference Include="bolt">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/bolt.dll</HintPath>
     </Reference>
     <Reference Include="bolt.user">
       <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/bolt.user.dll</HintPath>
     </Reference>
-    <Reference Include="udpkit.platform.null">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.null.dll</HintPath>
+    <Reference Include="bolt.compiler">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/editor/bolt.compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="bolt.editor">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/editor/bolt.editor.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/editor/protobuf-net.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt">
-      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/bolt.dll</HintPath>
     </Reference>
     <Reference Include="udpkit.common">
       <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.common.dll</HintPath>
@@ -320,8 +305,23 @@
     <Reference Include="udpkit">
       <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.dll</HintPath>
     </Reference>
+    <Reference Include="udpkit.platform.dotnet">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="udpkit.platform.null">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.null.dll</HintPath>
+    </Reference>
     <Reference Include="udpkit.platform.photon">
       <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.photon.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:/WakHead/Assets/PhotonBolt/Plugins/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/2019.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
