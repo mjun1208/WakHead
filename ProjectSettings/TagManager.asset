@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - SkyBlock
+  - Minion
+  - Bullet
   layers:
   - Default
   - TransparentFX
