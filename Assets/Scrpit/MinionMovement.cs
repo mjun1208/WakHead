@@ -8,12 +8,16 @@ public class MinionMovement : Creature
 
     void Start()
     {
+        base.Start();
+
         animator = transform.GetChild(0).GetComponent<Animator>();
     }
     
 
     void Update()
     {
+        base.Update();
+
         if (Vector3.Distance(TargetObject.transform.position, transform.position) <= 1.5f)
         {
             isAttack = true;
@@ -40,10 +44,10 @@ public class MinionMovement : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Bullet")
-        {
-            Life -= 1f;
-            Destroy(collision.gameObject);
-        }
+        //if (collision.tag == "Bullet")
+        //{
+        //    Life -= 1f;
+        //    Destroy(collision.gameObject);
+        //}
     }
 }

@@ -70,9 +70,6 @@
     <Compile Include="Assets\Scrpit\Tower\BulletMovement.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerRange.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerSystem.cs" />
-    <None Include="Assets\PhotonBolt\Plugins\JsonDotNet\link.xml" />
-    <None Include="Assets\PhotonBolt\Photon\PhotonLibs\changes-library.txt" />
-    <None Include="Assets\PhotonBolt\Photon\PhotonLibs\Photon3Unity3D.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -258,36 +255,6 @@
     </Reference>
     <Reference Include="LitJson">
       <HintPath>D:/Hyeok/Unity/WakHead/Assets/LitJson.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/bolt.dll</HintPath>
-    </Reference>
-    <Reference Include="bolt.user">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/bolt.user.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit.common">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.common.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit.platform.dotnet">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.dotnet.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit.platform.null">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.null.dll</HintPath>
-    </Reference>
-    <Reference Include="udpkit.platform.photon">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonBolt/assemblies/udpkit/udpkit.platform.photon.dll</HintPath>
-    </Reference>
-    <Reference Include="Photon3Unity3D">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/PhotonBolt/Plugins/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -665,24 +632,7 @@
       <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="PhotonBolt.csproj">
-      <Project>{FFEF9C20-08D4-42E8-3ECB-BB3B1E6CD715}</Project>
-      <Name>PhotonBolt</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonWebSocket.csproj">
-      <Project>{4E706767-F98E-D73D-2A1F-A12D1EB5F14F}</Project>
-      <Name>PhotonWebSocket</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonRealtime.csproj">
-      <Project>{76B60366-1280-A8F2-B447-7A973C1A22DE}</Project>
-      <Name>PhotonRealtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonBolt-Editor.csproj">
-      <Project>{7DFB5193-45E8-A589-BB06-45E0ACB8207D}</Project>
-      <Name>PhotonBolt-Editor</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 7
   m_Sprite: {fileID: 4723107735738678597, guid: 5a1775240eb7a634687b719ba0b455c3,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -111,7 +111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664431669145434885}
-  - component: {fileID: 3130677692860406504}
   - component: {fileID: 1664431669145434881}
   - component: {fileID: 1664431669145434882}
   - component: {fileID: 1664431669145434883}
@@ -137,35 +136,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3130677692860406504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664431669145434884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneGuid: 
-  _serializerGuid: 4928755d-ad44-4da4-8178-d6627c68614b
-  _prefabId: 0
-  _updateRate: 1
-  _autoFreezeProxyFrames: 0
-  _clientPredicted: 1
-  _allowInstantiateOnClient: 1
-  _persistThroughSceneLoads: 0
-  _sceneObjectDestroyOnDetach: 1
-  _sceneObjectAutoAttach: 1
-  _alwaysProxy: 0
-  _detachOnDisable: 1
-  _allowFirstReplicationWhenFrozen: 0
-  _autoRemoveChildEntities: 0
-  _entityBehaviourQueryOption: 0
-  _entityPriorityCalculatorQueryOption: 0
-  _entityReplicationFilterQueryOption: 0
 --- !u!114 &1664431669145434881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +151,7 @@ MonoBehaviour:
   Life: 3
   MoveSpeed: 1
   TargetObject: {fileID: 0}
+  RedTeam: 1
   isAttack: 0
 --- !u!61 &1664431669145434882
 BoxCollider2D:

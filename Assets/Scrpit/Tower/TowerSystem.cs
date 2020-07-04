@@ -11,12 +11,11 @@ public class TowerSystem : MonoBehaviour
     public bool RedTeam = true;
     public bool isAttack = false;
 
-    float ShootDelay = 10;
+    float ShootDelay = 100;
     float SpawnDelay = 10;
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -25,9 +24,9 @@ public class TowerSystem : MonoBehaviour
         ShootDelay += Time.deltaTime;
         SpawnDelay += Time.deltaTime;
 
-        if (SpawnDelay >= 7f)
+        if (SpawnDelay >= 16f)
         {
-            StartCoroutine(MinionSpawn(5));
+            StartCoroutine(MinionSpawn(4));
             SpawnDelay = 0;
         }
 
@@ -45,9 +44,12 @@ public class TowerSystem : MonoBehaviour
 
     IEnumerator MinionSpawn(int SpawnCount)
     {
-        GameObject temp = Instantiate(TowerMinion, new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 0.5f), transform.position.z), Quaternion.identity);
-        temp.GetComponent<MinionMovement>().TargetObject = GameObject.Find("Tower2");
-        yield return new WaitForSeconds(0.4f);
+        GameObject temp = Instantiate(TowerMinion, new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 1f), transform.position.z), Quaternion.identity);
+        if(temp.GetComponent<Creature>().RedTeam)
+            temp.GetComponent<MinionMovement>().TargetObject = GameObject.Find("Tower2");
+        else
+            temp.GetComponent<MinionMovement>().TargetObject = GameObject.Find("Tower1");
+        yield return new WaitForSeconds(0.6f);
         if(SpawnCount != 1)
         StartCoroutine(MinionSpawn(SpawnCount - 1));
 

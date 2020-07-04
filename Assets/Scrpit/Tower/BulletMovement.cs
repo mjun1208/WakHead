@@ -8,7 +8,7 @@ public class BulletMovement : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,9 +22,14 @@ public class BulletMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.tag == "Minion" || collision.tag == "Player")
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (collision.gameObject == TargetObject)
+        {
+            if (collision.tag == "Minion" || collision.tag == "Player")
+            {
+                collision.gameObject.GetComponent<Creature>().Life -= 2.6f;
+                 Destroy(gameObject);
+            }
+
+        }
     }
 }

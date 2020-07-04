@@ -18,6 +18,8 @@ public class PlayerMovement : Creature
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
+
         animator = transform.GetChild(0).GetComponent<Animator>();
         CurPos = this.transform.position;
         OldPos = CurPos;
@@ -29,6 +31,9 @@ public class PlayerMovement : Creature
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+        sprite.sortingOrder = sprite.sortingOrder + 1;
+
         if (!IsLocalPlayer) {
             return;
         }
@@ -98,11 +103,11 @@ public class PlayerMovement : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Bullet")
-        {
-            Life -= 2f;
-            Destroy(collision.gameObject);
-        }
+        //if (collision.tag == "Bullet")
+        //{
+        //    Life -= 2f;
+        //    Destroy(collision.gameObject);
+        //}
     }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
