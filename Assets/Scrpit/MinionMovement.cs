@@ -2,9 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionMovement : Creature
+using Photon.Pun;
+using Photon.Realtime;
+
+public class MinionMovement : Creature, IPunObservable
 {
     public bool isAttack = false;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(this.transform.position);
+            stream.SendNext(this.transform.localScale);
+        }
+        else
+        {
+            this.transform.position = (Vector3)stream.ReceiveNext();
+            this.transform.localScale = (Vector3)stream.ReceiveNext();
+        }
+    }
 
     void Start()
     {

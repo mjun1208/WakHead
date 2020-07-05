@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerMovement : Creature
+public class PlayerMovement : Creature, IPunObservable
 {
     public bool IsLocalPlayer = false;
     Vector2 OldPos;
@@ -15,6 +17,20 @@ public class PlayerMovement : Creature
     public float MinYPos = -5;
     public float MaxYPos = 0;
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(this.transform.position);
+            stream.SendNext(this.transform.localScale);
+        }
+        else
+        {
+            this.transform.position = (Vector3)stream.ReceiveNext();
+            this.transform.localScale = (Vector3)stream.ReceiveNext();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +42,25 @@ public class PlayerMovement : Creature
 
         CurrentSpeed = MoveSpeed;
         AttackSpeed = MoveSpeed * 0.2f;
+
+        if (photonView.IsMine)
+            CameraManager.instance.player = this.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.Update();
-        sprite.sortingOrder = sprite.sortingOrder + 1;
+        //Debug.Log(PhotonNetwork.Time);
+        //Debug.Log(PhotonNetwork.ServerTimestamp);
 
-        if (!IsLocalPlayer) {
+        base.Update();
+        //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
+
+        if (!photonView.IsMine) {
             return;
         }
 
-        //Move();
+        //Move();   
         Move_Input();
     }
     void Move()
@@ -89,12 +111,12 @@ public class PlayerMovement : Creature
                 transform.Translate(0, CurrentSpeed * Time.deltaTime, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             animator.SetBool("Attack", true);
             CurrentSpeed = AttackSpeed;
         }
-        else if (Input.GetKeyUp(KeyCode.X))
+        else if (Input.GetKeyUp(KeyCode.Z))
         {
             animator.SetBool("Attack", false);
             CurrentSpeed = MoveSpeed;
@@ -109,6 +131,7 @@ public class PlayerMovement : Creature
         //    Destroy(collision.gameObject);
         //}
     }
+
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    Destroy(collision.gameObject);

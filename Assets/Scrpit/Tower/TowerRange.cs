@@ -20,11 +20,13 @@ public class TowerRange : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((towersystem.RedTeam && !collision.GetComponent<Creature>().RedTeam)||(!towersystem.RedTeam && collision.GetComponent<Creature>().RedTeam))
+        if (collision.tag == "Player" || collision.tag == "Minion")
         {
-            
-            towersystem.isAttack = true;
-            towersystem.TargetObject = collision.gameObject;
+        if ((towersystem.RedTeam && !collision.GetComponent<Creature>().RedTeam)||(!towersystem.RedTeam && collision.GetComponent<Creature>().RedTeam))//상대팀일때
+            {
+                towersystem.isAttack = true;
+                towersystem.TargetObject = collision.gameObject;
+            }
         }
     }
 

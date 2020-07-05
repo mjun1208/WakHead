@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    static public CameraManager instance; 
+
     public GameObject player;
     public float FollowSpeed = 1.2f;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        instance = this;
     }
+
     private void FixedUpdate()
     {
-        transform.position = new Vector3(Mathf.Lerp(transform.position.x,player.transform.position.x, FollowSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+        if (player != null)
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x,player.transform.position.x, FollowSpeed * Time.deltaTime), transform.position.y, transform.position.z);
     }
 }
