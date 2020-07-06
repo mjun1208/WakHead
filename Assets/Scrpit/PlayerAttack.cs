@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+using Photon.Pun;
+using UnityEngine.UIElements;
+
+public class PlayerAttack : MonoBehaviourPunCallbacks
 {
     public PlayerMovement player;
     public List<GameObject> TargetObject = new List<GameObject>();
@@ -21,6 +24,14 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
+    }
+
+
+    [PunRPC]
+    public void DoAttack()
+    {
         for (int i = 0; i < TargetObject.Count; i++)
         {
             TargetObject[i].transform.Translate((TargetObject[i].transform.position.x - player.transform.position.x) * 0.3f, 0, 0);
@@ -30,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Minion")
+        if (collision.gameObject.tag == "Minion" && PhotonNetwork.IsMasterClient)
         {
             if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
             {
@@ -41,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Minion")
+        if (collision.gameObject.tag == "Minion" && PhotonNetwork.IsMasterClient)
         {
             if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)
             {

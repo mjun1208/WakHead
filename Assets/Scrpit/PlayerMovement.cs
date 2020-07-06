@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : Creature, IPunObservable
 {
     public bool IsLocalPlayer = false;
-    Vector2 OldPos;
-    Vector2 CurPos;
+    Vector3 OldPos;
+    Vector3 CurPos;
 
     float CurrentSpeed = 0;
     float AttackSpeed = 0;
@@ -21,20 +22,28 @@ public class PlayerMovement : Creature, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(this.transform.position);
+            stream.SendNext(CurPos);
             stream.SendNext(this.transform.localScale);
+            stream.SendNext(this.RedTeam);
         }
         else
         {
-            this.transform.position = (Vector3)stream.ReceiveNext();
+            CurPos = (Vector3)stream.ReceiveNext();
             this.transform.localScale = (Vector3)stream.ReceiveNext();
+            this.RedTeam = (bool)stream.ReceiveNext();
         }
     }
-
+    private void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        base.Start();
+        if (PhotonNetwork.IsMasterClient)
+            RedTeam = true;
+        else
+            RedTeam = false;
 
         animator = transform.GetChild(0).GetComponent<Animator>();
         CurPos = this.transform.position;
@@ -57,6 +66,8 @@ public class PlayerMovement : Creature, IPunObservable
         //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
 
         if (!photonView.IsMine) {
+            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 5.0f);
+            
             return;
         }
 
@@ -120,6 +131,12 @@ public class PlayerMovement : Creature, IPunObservable
         {
             animator.SetBool("Attack", false);
             CurrentSpeed = MoveSpeed;
+        }
+
+        CurPos = this.transform.position;
+        if (CurPos != OldPos)
+        {
+            OldPos = CurPos;
         }
     }
 

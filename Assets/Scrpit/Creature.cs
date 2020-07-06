@@ -14,7 +14,7 @@ public class Creature : MonoBehaviourPunCallbacks
     public GameObject TargetObject;
     public bool RedTeam = true;
 
-    protected void Start()
+    protected void Awake()
     {
         sprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }

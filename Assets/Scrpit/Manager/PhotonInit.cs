@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
+using UnityEngine.SceneManagement;
+
 public class PhotonInit : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "1.0";
@@ -21,8 +23,8 @@ public class PhotonInit : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = this.gameVersion;
         PhotonNetwork.NickName = userId;
 
-        PhotonNetwork.SendRate = 140;
-        PhotonNetwork.SerializationRate = 140;
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 60;
 
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -39,6 +41,6 @@ public class PhotonInit : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
+        SceneManager.LoadScene("BangScene");
     }
 }

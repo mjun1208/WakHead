@@ -33,13 +33,15 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - Attack
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
-  - Attack
   - Spawn
+  - OnTriggerEnter2D
+  - DoAttack
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
   DevRegionSetOnce: 1
