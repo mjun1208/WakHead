@@ -12,7 +12,7 @@ public class PlayerSkill_1 : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Skill_1()
     {
-        //if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
             photonView.RPC("DoSkill_1", RpcTarget.AllViaServer, null);
     }
 
@@ -24,7 +24,7 @@ public class PlayerSkill_1 : MonoBehaviourPunCallbacks, IPunObservable
         {
             Creature tempCreatureScript = TargetObject[i].GetComponent<Creature>();
 
-            tempCreatureScript.Life -= 1.0f;
+            tempCreatureScript.OnDamage(1.0f);
             tempCreatureScript.CanMove = false;
             StartCoroutine(tempCreatureScript.Grab(player.transform.position));
             //if (TargetObject[i].tag != "Player")

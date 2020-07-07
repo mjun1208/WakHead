@@ -46,6 +46,7 @@ public class MinionMovement : Creature, IPunObservable
         base.Update();
 
         ChangeTeam();
+        Dead();
 
         if (!PhotonNetwork.IsMasterClient)
             return;
@@ -55,7 +56,6 @@ public class MinionMovement : Creature, IPunObservable
             Attack();
             Move();
         }
-        Dead();
     }
 
     void ChangeTeam()
@@ -76,6 +76,7 @@ public class MinionMovement : Creature, IPunObservable
     {
         if (Life <= 0)
         {
+            ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
             this.gameObject.SetActive(false);//원래는 죽는 아니메로 이동
         }
     }

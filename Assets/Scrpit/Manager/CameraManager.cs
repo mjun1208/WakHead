@@ -4,13 +4,16 @@ using UnityEngine;
 
 using Photon.Pun;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : MonoBehaviourPunCallbacks
 {
     static public CameraManager instance; 
 
     public GameObject player;
+
     public float FollowSpeed = 1.2f;
+
     // Start is called before the first frame update
+
     private void Awake()
     {
         instance = this;
@@ -20,6 +23,6 @@ public class CameraManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (player != null)
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x,player.transform.position.x, FollowSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x, FollowSpeed * Time.deltaTime), transform.position.y, transform.position.z);
     }
 }

@@ -38,13 +38,15 @@ MonoBehaviour:
   - DestroyRpc
   - DestroySpaceship
   - DoAttack
+  - DoAttack2
   - DoGrab
   - DoKnockBack
   - DoSkill_1
   - Fire
   - RespawnSpaceship
   - Spawn
-  - DoAttack2
+  - RPCSpawnParticle
+  - ApplyLife
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

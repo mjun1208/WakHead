@@ -2,34 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.ComponentModel;
-using System.Text;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
-using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
+using Photon.Pun;
+using Photon.Realtime;
 
 using UnityEngine.UI;
 using TMPro;
 
 public class NetworkManager : MonoBehaviour
 {
-    public static NetworkManager instance;
-
-    private void Awake()
+    public void GoTitle()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(this.gameObject);
-
-        DontDestroyOnLoad(gameObject);
+        SceneManager.LoadScene("Title");
     }
 
+    public void Disconnect()
+    {
+        PhotonNetwork.Disconnect();
+    }
     
 }

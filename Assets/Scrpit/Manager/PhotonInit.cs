@@ -15,6 +15,10 @@ public class PhotonInit : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+    public void ClickStartButton()
+    {
         OnConnectedToMaster();
     }
 

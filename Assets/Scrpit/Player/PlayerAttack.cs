@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
         {
             Creature tempCreatureScript = TargetObject[i].GetComponent<Creature>();
 
-            tempCreatureScript.Life -= 0.3f;
+            tempCreatureScript.OnDamage(0.3f);
             //if (TargetObject[i].tag != "Player")
             Vector2 Dir = TargetObject[i].transform.position - player.transform.position;
             Dir.Normalize();
@@ -59,7 +59,8 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
     public void DoAttack2()
     {
         GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);
-            bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
+        bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
+        bul.GetComponent<Bullet>().player = player;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -15,6 +15,7 @@ public class Creature : MonoBehaviourPunCallbacks
     public bool RedTeam = true;
 
     public bool CanMove = true;
+    public bool IsDead = false;
 
     protected void Awake()
     {
@@ -23,14 +24,22 @@ public class Creature : MonoBehaviourPunCallbacks
     
     public void KnockBack(float power)
     {
-        photonView.RPC("DoKnockBack", RpcTarget.All, power);
+        CanMove = false;
+        StartCoroutine(DoKnockBack(power));
+        //photonView.RPC("DoKnockBack", RpcTarget.All, power);
         //this.transform.Translate(new Vector3(power, 0, 0));
     }
 
-    [PunRPC]
-    public void DoKnockBack(float power)
+    public IEnumerator DoKnockBack(float power)
     {
-        this.transform.Translate(new Vector3(power, 0, 0));
+        Vector3 TargetPos = this.transform.position + new Vector3(power, 0, 0);
+
+        while (Vector3.Distance(this.transform.position, TargetPos) > 0.1f) {
+            photonView.RPC("DoGrab", RpcTarget.All, TargetPos);
+            yield return null;
+        }
+        CanMove = true;
+        yield return null;
     }
 
     public IEnumerator Grab(Vector3 Target)
@@ -50,6 +59,18 @@ public class Creature : MonoBehaviourPunCallbacks
     public void DoGrab(Vector3 Target)
     {
         this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
+    }
+
+    public void OnDamage(float damage)
+    {
+        Life -= damage; 
+        photonView.RPC("ApplyLife", RpcTarget.Others, Life);
+    }
+
+    [PunRPC]
+    public void ApplyLife(float life)
+    {
+        Life = life;
     }
 
     protected void Update()

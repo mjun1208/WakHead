@@ -19,6 +19,11 @@ public class PlayerMovement : Creature, IPunObservable
     public float MinYPos = -5;
     public float MaxYPos = 0;
 
+    public GameObject Grapic;
+
+    private int CurReSpawnTime = 0;
+    private int OldReSpawnTime = 0;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -26,7 +31,9 @@ public class PlayerMovement : Creature, IPunObservable
             stream.SendNext(CurPos);
             stream.SendNext(this.transform.localScale);
             stream.SendNext(this.RedTeam);
-            stream.SendNext(this.Life);
+            //stream.SendNext(this.Life);
+            stream.SendNext(Grapic.activeSelf);
+
             stream.SendNext(!this.IsLocalPlayer);
             stream.SendNext(this.CanMove);
         }
@@ -35,7 +42,9 @@ public class PlayerMovement : Creature, IPunObservable
             CurPos = (Vector3)stream.ReceiveNext();
             this.transform.localScale = (Vector3)stream.ReceiveNext();
             this.RedTeam = (bool)stream.ReceiveNext();
-            this.Life = (float)stream.ReceiveNext();
+            //this.Life = (float)stream.ReceiveNext();
+            Grapic.SetActive((bool)stream.ReceiveNext());
+
             this.IsLocalPlayer = (bool)stream.ReceiveNext();
             this.CanMove = (bool)stream.ReceiveNext();
         }
@@ -44,7 +53,6 @@ public class PlayerMovement : Creature, IPunObservable
     private void Awake()
     {
         base.Awake();
-        this.Life = 5;
     }
     // Start is called before the first frame update
     void Start()
@@ -74,13 +82,43 @@ public class PlayerMovement : Creature, IPunObservable
         base.Update();
         //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
 
-        if (this.Life <= 0)
-            this.gameObject.SetActive(false);
-
         if (!photonView.IsMine) {
             this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 10.0f * Time.deltaTime);
             
             return;
+        }
+
+        if (this.Life <= 0)
+        {
+            if (!IsDead)
+            {
+                IsDead = true;
+                ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
+                Grapic.SetActive(false);
+                OldReSpawnTime = PhotonNetwork.ServerTimestamp;
+            }
+            else
+            {
+                CurReSpawnTime = PhotonNetwork.ServerTimestamp;
+                int NowTime = CurReSpawnTime - OldReSpawnTime;
+                if (NowTime > 3 * 1000)
+                {
+                    this.Life = 4;
+                    photonView.RPC("ApplyLife", RpcTarget.Others, Life);
+
+                    transform.position = Vector3.zero;
+
+                    animator.SetBool("Skill_1", false);
+                    animator.SetBool("Skill_2", false);
+                    animator.SetBool("Attack", false);
+                    animator.SetBool("Walk", false);
+                }
+            }
+        }
+        else
+        {
+            IsDead = false;
+            Grapic.SetActive(true);
         }
 
         CurPos = this.transform.position;
@@ -176,7 +214,7 @@ public class PlayerMovement : Creature, IPunObservable
 
     public void Skill_2()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             CanMove = false;
             animator.SetBool("Skill_2", true);

@@ -83,11 +83,14 @@
     <Compile Include="Assets\Scrpit\Minion\MinionAttack.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionMovement.cs" />
     <Compile Include="Assets\Scrpit\NetworkManager.cs" />
+    <Compile Include="Assets\Scrpit\Particle.cs" />
+    <Compile Include="Assets\Scrpit\ParticleAdmin.cs" />
     <Compile Include="Assets\Scrpit\Player\IsMine.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerAdmin.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerAttack.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerSkill_1.cs" />
+    <Compile Include="Assets\Scrpit\Title.cs" />
     <Compile Include="Assets\Scrpit\Tower\BulletAdmin.cs" />
     <Compile Include="Assets\Scrpit\Tower\BulletMovement.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerRange.cs" />
@@ -301,13 +304,19 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/LitJson.dll</HintPath>
+      <HintPath>D:/WakHead/Assets/LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
+      <HintPath>D:/WakHead/Assets/Photon/PhotonLibs/Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="websocket-sharp">
-      <HintPath>D:/Hyeok/Unity/WakHead/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+      <HintPath>D:/WakHead/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -655,37 +664,37 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/WakHead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

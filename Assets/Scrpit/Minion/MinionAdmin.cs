@@ -28,6 +28,7 @@ public class MinionAdmin : MonoBehaviourPunCallbacks , IPunObservable
             }
         }
     }
+
     private void Awake()
     {
         for (int i = 0; i < this.transform.childCount; i++)
