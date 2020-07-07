@@ -28,7 +28,7 @@ public class Creature : MonoBehaviourPunCallbacks
 
     public IEnumerator DoGrab(Vector3 Target)
     {
-        while (Vector3.Distance(this.transform.position, Target) > 1.0f)
+        while (Vector3.Distance(this.transform.position, Target) > 0.45f)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
             yield return null;

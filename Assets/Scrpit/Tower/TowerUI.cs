@@ -7,7 +7,7 @@ public class TowerUI : MonoBehaviour
 {
     public TowerSystem tower;
     Slider Hpbar;
-    public Text Hptext;
+    [SerializeField] Text Hptext;
 
     // Start is called before the first frame update
     void Start()
