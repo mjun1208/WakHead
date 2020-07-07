@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6642160487493563849}
+  Bullet: {fileID: 0}
   TargetObject: []
 --- !u!114 &559037224498871920
 MonoBehaviour:

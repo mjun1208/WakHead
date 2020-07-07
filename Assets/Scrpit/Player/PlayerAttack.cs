@@ -44,7 +44,14 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
 
             tempCreatureScript.Life -= 0.3f;
             //if (TargetObject[i].tag != "Player")
-            tempCreatureScript.KnockBack(0.5f);
+            Vector2 Dir = TargetObject[i].transform.position - player.transform.position;
+            Dir.Normalize();
+            float power;
+            if (Dir.x > 0)
+                power = 0.5f;
+            else
+                power = -0.5f;
+            tempCreatureScript.KnockBack(power);
         }
     }
 

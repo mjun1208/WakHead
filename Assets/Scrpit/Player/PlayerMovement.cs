@@ -61,7 +61,7 @@ public class PlayerMovement : Creature, IPunObservable
         CurrentSpeed = MoveSpeed;
         AttackSpeed = MoveSpeed * 0.2f;
 
-        if (IsLocalPlayer)
+        if (photonView.IsMine)
             CameraManager.instance.player = this.gameObject;
     }
 
@@ -74,17 +74,16 @@ public class PlayerMovement : Creature, IPunObservable
         base.Update();
         //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
 
-        if (!IsLocalPlayer) {
-            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 5.0f * Time.deltaTime);
+        if (this.Life <= 0)
+            this.gameObject.SetActive(false);
+
+        if (!photonView.IsMine) {
+            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 10.0f * Time.deltaTime);
             
             return;
         }
 
         CurPos = this.transform.position;
-        if (CurPos != OldPos)
-        {
-            OldPos = CurPos;
-        }
 
         //Move();   
         if (animator.GetBool("Skill_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
@@ -105,9 +104,6 @@ public class PlayerMovement : Creature, IPunObservable
             Skill_1();
             Skill_2();
         }
-
-        if (this.Life <= 0)
-            Destroy(this.gameObject);
     }
     void Move()
     {

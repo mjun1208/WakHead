@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scrpit\Minion\MinionAttack.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionMovement.cs" />
     <Compile Include="Assets\Scrpit\NetworkManager.cs" />
+    <Compile Include="Assets\Scrpit\Player\IsMine.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerAdmin.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerAttack.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerMovement.cs" />

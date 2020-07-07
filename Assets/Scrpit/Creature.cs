@@ -23,19 +23,33 @@ public class Creature : MonoBehaviourPunCallbacks
     
     public void KnockBack(float power)
     {
+        photonView.RPC("DoKnockBack", RpcTarget.All, power);
+        //this.transform.Translate(new Vector3(power, 0, 0));
+    }
+
+    [PunRPC]
+    public void DoKnockBack(float power)
+    {
         this.transform.Translate(new Vector3(power, 0, 0));
     }
 
-    public IEnumerator DoGrab(Vector3 Target)
+    public IEnumerator Grab(Vector3 Target)
     {
         while (Vector3.Distance(this.transform.position, Target) > 0.45f)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
+            photonView.RPC("DoGrab", RpcTarget.All, Target);
+            //this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
             yield return null;
         }
 
         CanMove = true;
         yield return null;
+    }
+
+    [PunRPC]
+    public void DoGrab(Vector3 Target)
+    {
+        this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
     }
 
     protected void Update()

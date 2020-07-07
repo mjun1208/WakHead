@@ -9,8 +9,11 @@ using UnityEngine.Rendering;
 
 public class PlayerAdmin : MonoBehaviourPunCallbacks , IPunObservable
 {
+    public static PlayerAdmin instance;
+
     public List<GameObject> Players = new List<GameObject>();
     public List<PlayerMovement> Player_Script = new List<PlayerMovement>();
+    private int NowCount = 0;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -33,28 +36,14 @@ public class PlayerAdmin : MonoBehaviourPunCallbacks , IPunObservable
     // Start is called before the first frame update
     private void Awake()
     {
+        instance = this;
+
         for (int i = 0; i < this.transform.childCount; i++)
         {
             Players.Add(this.transform.GetChild(i).gameObject);
             Player_Script.Add(this.transform.GetChild(i).GetComponent<PlayerMovement>());
         }
-
-        photonView.RPC("SpawnPlayer", RpcTarget.All, null);
-        //PhotonNetwork.Instantiate("IsMine", Vector3.zero, Quaternion.identity);
-    }
-
-    [PunRPC]
-    public void SpawnPlayer()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Players[0].SetActive(true);
-            Player_Script[0].IsLocalPlayer = true;
-        }
-        else
-        {
-            Players[1].SetActive(true);
-            Player_Script[1].IsLocalPlayer = true;
-        }
+        //SpawnPlayer();
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
 }

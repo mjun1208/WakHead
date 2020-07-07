@@ -43,6 +43,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - Spawn
   - SpawnPlayer
+  - DoKnockBack
+  - DoGrab
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
