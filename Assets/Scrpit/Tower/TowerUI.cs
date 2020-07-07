@@ -7,7 +7,7 @@ public class TowerUI : MonoBehaviour
 {
     public TowerSystem tower;
     Slider Hpbar;
-    [SerializeField] Text Hptext;
+    public Text Hptext;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,6 @@ public class TowerUI : MonoBehaviour
         Hpbar.value = tower.TowerHp;
         Hptext.text = tower.TowerHp.ToString("0") + " / 100";
         gameObject.transform.position = Camera.main.WorldToScreenPoint(
-            new Vector3(tower.gameObject.transform.position.x, tower.gameObject.transform.position.y + 5, tower.gameObject.transform.position.z));
-
+            new Vector3(tower.gameObject.transform.position.x, tower.gameObject.transform.position.y + 5 , tower.gameObject.transform.position.z));
     }
-}
+} 

@@ -639,17 +639,11 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
-=======
->>>>>>> 494668825f5fc0610eaee894cedfd99442666d23
     <Reference Include="UnityEngine.UI">
       <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>D:/WakHead/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/Hyeok/Unity/WakHead/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>

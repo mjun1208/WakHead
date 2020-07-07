@@ -55,6 +55,7 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     public void DoAttack2()
     {
         GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);

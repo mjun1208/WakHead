@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -12,6 +13,8 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     public bool isAttack = false;
     public float TowerHp = 100;
     public SpriteRenderer TowerSprite;
+    public GameObject Panel;
+    public Text Paneltext;
 
     public BulletAdmin Bullet;
     public MinionAdmin Minion;
@@ -41,16 +44,31 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        Hp();
         ChangeTeam();
 
         if (!PhotonNetwork.IsMasterClient)
             return;
         photonView.RPC("Spawn", RpcTarget.AllViaServer, null);
-        //photonView.RPC("Attack", RpcTarget.AllViaServer, null);
+        photonView.RPC("Attack", RpcTarget.AllViaServer, null);
     }
+
     void ChangeTeam()
     {
         anime.SetBool("RedTeam", RedTeam);
+    }
+
+    void Hp()
+    {
+        if (TowerHp <= 0)
+        {
+            TowerHp = 0;
+            if (RedTeam)
+                Paneltext.text = "블루팀 왁굳 승리!";
+            else
+                Paneltext.text = "레드팀 왁굳 승리!";
+            Panel.SetActive(true);
+        }
     }
 
     [PunRPC]
@@ -72,7 +90,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (CurShootDelay - OldShootDelay > 2 * 1000)
             {
-                Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 1f), 0), RedTeam);
+                Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + 6, 0), RedTeam);
                 OldShootDelay = CurShootDelay;
             }
         }
