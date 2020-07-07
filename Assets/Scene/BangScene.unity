@@ -1469,7 +1469,7 @@ PrefabInstance:
     - target: {fileID: 6642160487493563855, guid: 1f53e42e18aeae5429326aac6f9ff28c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8383523391489694600, guid: 1f53e42e18aeae5429326aac6f9ff28c,
         type: 3}
@@ -2339,7 +2339,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 426739640}

@@ -26,7 +26,7 @@ public class PlayerSkill_1 : MonoBehaviourPunCallbacks, IPunObservable
 
             tempCreatureScript.Life -= 1.0f;
             tempCreatureScript.CanMove = false;
-            StartCoroutine(tempCreatureScript.DoGrab(player.transform.position));
+            StartCoroutine(tempCreatureScript.Grab(player.transform.position));
             //if (TargetObject[i].tag != "Player")
             //tempCreatureScript.KnockBack(TargetObject[i].transform.position.x - player.transform.position.x);
         }
