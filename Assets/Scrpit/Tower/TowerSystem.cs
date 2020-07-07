@@ -10,6 +10,8 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject TargetObject;
     public bool RedTeam = true;
     public bool isAttack = false;
+    public float TowerHp = 100;
+    public SpriteRenderer TowerSprite;
 
     public BulletAdmin Bullet;
     public MinionAdmin Minion;
@@ -28,6 +30,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     {
         //throw new System.NotImplementedException();
     }
+
 
     void Start()
     {
@@ -87,5 +90,12 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         if(SpawnCount != 1)
         StartCoroutine(MinionSpawn(SpawnCount - 1));
 
+    }
+
+    public IEnumerator Hit()
+    {
+        TowerSprite.color = new Color(255,0,0,255);
+        yield return new WaitForSeconds(0.05f);
+        TowerSprite.color = new Color(255,255,255,255);
     }
 }

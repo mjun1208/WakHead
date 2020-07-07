@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1664431669031123724}
   - component: {fileID: 3030836549138215595}
   - component: {fileID: 1109613220066295977}
+  - component: {fileID: 1821493778669673463}
   m_Layer: 0
   m_Name: Grapic
   m_TagString: Untagged
@@ -147,6 +148,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &1821493778669673463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664431669031123726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ea6f6e3683d6249b1b724b65b65174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1664431669145434884
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +212,7 @@ MonoBehaviour:
   MoveSpeed: 1
   TargetObject: {fileID: 0}
   RedTeam: 1
+  CanMove: 1
   isAttack: 0
 --- !u!61 &1664431669145434882
 BoxCollider2D:

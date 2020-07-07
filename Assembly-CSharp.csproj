@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scrpit\Manager\CameraManager.cs" />
     <Compile Include="Assets\Scrpit\Manager\PhotonInit.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionAdmin.cs" />
+    <Compile Include="Assets\Scrpit\Minion\MinionAttack.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionMovement.cs" />
     <Compile Include="Assets\Scrpit\NetworkManager.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerAdmin.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scrpit\Tower\BulletMovement.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerRange.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerSystem.cs" />
+    <Compile Include="Assets\Scrpit\Tower\TowerUI.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
