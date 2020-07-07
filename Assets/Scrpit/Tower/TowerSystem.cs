@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -13,13 +12,9 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     public bool isAttack = false;
     public float TowerHp = 100;
     public SpriteRenderer TowerSprite;
-    public GameObject EndPanel;
-    public Text EndingText;
 
     public BulletAdmin Bullet;
     public MinionAdmin Minion;
-
-
 
     int CurShootDelay = 0;
     int CurSpawnDelay = 0;
@@ -46,7 +41,6 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        Hp();
         ChangeTeam();
 
         if (!PhotonNetwork.IsMasterClient)
@@ -81,19 +75,6 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
                 Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 1f), 0), RedTeam);
                 OldShootDelay = CurShootDelay;
             }
-        }
-    }
-
-    public void Hp()
-    {
-        if (TowerHp <= 0)
-        {
-            TowerHp = 0;
-            if(RedTeam)
-                EndingText.text = "블루팀 왁굳 승리!";
-            else
-                EndingText.text = "레드팀 왁굳 승리!";
-            EndPanel.SetActive(true);
         }
     }
 

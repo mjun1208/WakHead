@@ -80,6 +80,12 @@ public class PlayerMovement : Creature, IPunObservable
             return;
         }
 
+        CurPos = this.transform.position;
+        if (CurPos != OldPos)
+        {
+            OldPos = CurPos;
+        }
+
         //Move();   
         if (animator.GetBool("Skill_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
@@ -153,12 +159,6 @@ public class PlayerMovement : Creature, IPunObservable
         {
             animator.SetBool("Attack", false);
             CurrentSpeed = MoveSpeed;
-        }
-
-        CurPos = this.transform.position;
-        if (CurPos != OldPos)
-        {
-            OldPos = CurPos;
         }
     }
 
