@@ -20,28 +20,34 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     int OldShootDelay = 0;
     int OldSpawnDelay = 0;
 
+    public Animator anime;
+
     //private PhotonView photonView_ = GameObject.Find("PhotonController").GetComponent<PhotonView>();
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     void Start()
     {
-        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
-
         OldSpawnDelay = PhotonNetwork.ServerTimestamp - 15 * 1000;
-        OldShootDelay = PhotonNetwork.ServerTimestamp - 3 * 1000;
+        OldShootDelay = PhotonNetwork.ServerTimestamp - 2 * 1000;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ChangeTeam();
+
         if (!PhotonNetwork.IsMasterClient)
             return;
         photonView.RPC("Spawn", RpcTarget.AllViaServer, null);
-        photonView.RPC("Attack", RpcTarget.AllViaServer, null);
+        //photonView.RPC("Attack", RpcTarget.AllViaServer, null);
+    }
+    void ChangeTeam()
+    {
+        anime.SetBool("RedTeam", RedTeam);
     }
 
     [PunRPC]
@@ -61,7 +67,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         CurShootDelay = PhotonNetwork.ServerTimestamp;
         if (isAttack)
         {
-            if (CurShootDelay - OldShootDelay < 3 * 1000)
+            if (CurShootDelay - OldShootDelay > 2 * 1000)
             {
                 Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 1f), 0), RedTeam);
                 OldShootDelay = CurShootDelay;

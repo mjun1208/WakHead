@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - MinionAdmin
     - MinionMovement
     - PhotonInit
+    - PlayerAdmin
     - PlayerAttack
     - PlayerMovement
     - TowerRange
@@ -96,29 +97,31 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11470}
+      Script: {instanceID: 11392}
     - Class: 114
-      Script: {instanceID: 11528}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11620}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11754}
+      Script: {instanceID: 11678}
     - Class: 114
-      Script: {instanceID: 12400}
+      Script: {instanceID: 12324}
     - Class: 114
-      Script: {instanceID: 12832}
+      Script: {instanceID: 12716}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 12760}
     - Class: 114
-      Script: {instanceID: 13492}
+      Script: {instanceID: 13352}
+    - Class: 114
+      Script: {instanceID: 13426}
+    - Class: 114
+      Script: {instanceID: 13538}
+    - Class: 114
+      Script: {instanceID: 13578}
     - Class: 114
       Script: {instanceID: 13604}
     - Class: 114
-      Script: {instanceID: 13644}
-    - Class: 114
-      Script: {instanceID: 16974}
-    - Class: 114
-      Script: {instanceID: 16978}
+      Script: {instanceID: 68292}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -177,75 +180,75 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11224}
+    - Class: 114
+      Script: {instanceID: 11372}
+    - Class: 114
+      Script: {instanceID: 11392}
+    - Class: 114
+      Script: {instanceID: 11432}
     - Class: 114
       Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11470}
+      Script: {instanceID: 11478}
     - Class: 114
-      Script: {instanceID: 11510}
+      Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11528}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11556}
+      Script: {instanceID: 11678}
     - Class: 114
-      Script: {instanceID: 11568}
+      Script: {instanceID: 11886}
     - Class: 114
-      Script: {instanceID: 11620}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 11754}
+      Script: {instanceID: 12004}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 12046}
+      Script: {instanceID: 12254}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12324}
     - Class: 114
-      Script: {instanceID: 12120}
+      Script: {instanceID: 12464}
     - Class: 114
-      Script: {instanceID: 12330}
+      Script: {instanceID: 12520}
     - Class: 114
-      Script: {instanceID: 12400}
+      Script: {instanceID: 12596}
     - Class: 114
-      Script: {instanceID: 12538}
+      Script: {instanceID: 12680}
     - Class: 114
-      Script: {instanceID: 12594}
+      Script: {instanceID: 12688}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12736}
     - Class: 114
-      Script: {instanceID: 12754}
+      Script: {instanceID: 12752}
     - Class: 114
-      Script: {instanceID: 12762}
+      Script: {instanceID: 12760}
     - Class: 114
-      Script: {instanceID: 12808}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12920}
     - Class: 114
-      Script: {instanceID: 12832}
+      Script: {instanceID: 12928}
     - Class: 114
-      Script: {instanceID: 12972}
+      Script: {instanceID: 12986}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 13062}
     - Class: 114
-      Script: {instanceID: 12998}
+      Script: {instanceID: 13248}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13426}
     - Class: 114
-      Script: {instanceID: 13130}
+      Script: {instanceID: 13514}
     - Class: 114
-      Script: {instanceID: 13314}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 13492}
+      Script: {instanceID: 13548}
     - Class: 114
-      Script: {instanceID: 13580}
+      Script: {instanceID: 13556}
     - Class: 114
-      Script: {instanceID: 13604}
-    - Class: 114
-      Script: {instanceID: 13614}
-    - Class: 114
-      Script: {instanceID: 13622}
-    - Class: 114
-      Script: {instanceID: 13644}
+      Script: {instanceID: 13578}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1103,6 +1106,12 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
+      Hash: dfb92612af56ab227ed43c35c8bbb445
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MinionAdmin
+  - hash:
+      serializedVersion: 2
       Hash: 92b8fbb1b8e53469d7549c58a3fe58fe
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Asteroids
@@ -1607,7 +1616,7 @@ ScriptsOnlyBuild:
     className: CountdownTimer
   - hash:
       serializedVersion: 2
-      Hash: 3bb8adac570d9f5441cc85f85c22d4a9
+      Hash: f8ae4fd60b1ffa5ebddee0f907ee59cb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TowerSystem
@@ -1631,22 +1640,22 @@ ScriptsOnlyBuild:
     className: LobbyTopPanel
   - hash:
       serializedVersion: 2
-      Hash: c3d3430df9e3ea95e3e3d587961390fb
-    assemblyName: Unity.Timeline.dll
-    namespaceName: UnityEngine.Timeline
-    className: PlayableTrack
-  - hash:
-      serializedVersion: 2
       Hash: 6b456cee4d6b5e28343f43368a76d5d0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BulletAdmin
   - hash:
       serializedVersion: 2
-      Hash: dfb92612af56ab227ed43c35c8bbb445
+      Hash: c3d3430df9e3ea95e3e3d587961390fb
+    assemblyName: Unity.Timeline.dll
+    namespaceName: UnityEngine.Timeline
+    className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 96f52f5b3f42a6b824091d6448a10841
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: MinionAdmin
+    className: PlayerAdmin
   platform: 5
   scenePathNames:
   - Assets/Scene/Title.unity

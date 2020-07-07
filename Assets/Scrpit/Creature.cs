@@ -18,6 +18,11 @@ public class Creature : MonoBehaviourPunCallbacks
     {
         sprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
+    
+    public void KnockBack(float power)
+    {
+        this.transform.Translate(new Vector3(power, 0, 0));
+    }
 
     protected void Update()
     {

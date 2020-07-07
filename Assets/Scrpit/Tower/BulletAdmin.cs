@@ -28,7 +28,7 @@ public class BulletAdmin : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < this.transform.childCount; i++)
         {
