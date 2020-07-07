@@ -18,6 +18,7 @@ public class MinionMovement : Creature, IPunObservable
 
             stream.SendNext(RedTeam);
             stream.SendNext(this.Life);
+            stream.SendNext(this.CanMove);
         }
         else
         {
@@ -26,6 +27,7 @@ public class MinionMovement : Creature, IPunObservable
 
             RedTeam = (bool)stream.ReceiveNext();
             this.Life = (float)stream.ReceiveNext();
+            this.CanMove = (bool)stream.ReceiveNext();
         }
     }
 
@@ -48,8 +50,11 @@ public class MinionMovement : Creature, IPunObservable
         if (!PhotonNetwork.IsMasterClient)
             return;
 
-        Attack();
-        Move();
+        if (CanMove)
+        {
+            Attack();
+            Move();
+        }
         Dead();
     }
 

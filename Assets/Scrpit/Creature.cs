@@ -14,6 +14,8 @@ public class Creature : MonoBehaviourPunCallbacks
     public GameObject TargetObject;
     public bool RedTeam = true;
 
+    public bool CanMove = true;
+
     protected void Awake()
     {
         sprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -22,6 +24,18 @@ public class Creature : MonoBehaviourPunCallbacks
     public void KnockBack(float power)
     {
         this.transform.Translate(new Vector3(power, 0, 0));
+    }
+
+    public IEnumerator DoGrab(Vector3 Target)
+    {
+        while (Vector3.Distance(this.transform.position, Target) > 1.0f)
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
+            yield return null;
+        }
+
+        CanMove = true;
+        yield return null;
     }
 
     protected void Update()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Rendering;
@@ -27,6 +28,7 @@ public class PlayerMovement : Creature, IPunObservable
             stream.SendNext(this.RedTeam);
             stream.SendNext(this.Life);
             stream.SendNext(!this.IsLocalPlayer);
+            stream.SendNext(this.CanMove);
         }
         else
         {
@@ -35,6 +37,7 @@ public class PlayerMovement : Creature, IPunObservable
             this.RedTeam = (bool)stream.ReceiveNext();
             this.Life = (float)stream.ReceiveNext();
             this.IsLocalPlayer = (bool)stream.ReceiveNext();
+            this.CanMove = (bool)stream.ReceiveNext();
         }
     }
 
@@ -72,13 +75,24 @@ public class PlayerMovement : Creature, IPunObservable
         //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
 
         if (!IsLocalPlayer) {
-            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 5.0f);
+            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 5.0f * Time.deltaTime);
             
             return;
         }
 
         //Move();   
-        Move_Input();
+        if (animator.GetBool("Skill_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        {
+            animator.SetBool("Skill_1", false);
+            CanMove = true;
+        }
+
+        if (CanMove)
+        {
+            Move_Input();
+            Skill_1();
+        }
+
         if (this.Life <= 0)
             Destroy(this.gameObject);
     }
@@ -148,22 +162,17 @@ public class PlayerMovement : Creature, IPunObservable
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Skill_1()
     {
-        //if (collision.tag == "Bullet")
-        //{
-        //    Life -= 2f;
-        //    Destroy(collision.gameObject);
-        //}
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            CanMove = false;
+            animator.SetBool("Skill_1", true);
+        }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Destroy(collision.gameObject);
-    //    if (collision.gameObject.tag == "Bullet")
-    //        {
-    //            Life -= 2f;
-    //            Destroy(collision.gameObject);
-    //        }
-    //}
+    public void Skill_2()
+    {
+
+    }
 }

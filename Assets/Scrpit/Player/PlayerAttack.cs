@@ -33,9 +33,11 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < TargetObject.Count; i++)
         {
-            TargetObject[i].GetComponent<Creature>().Life -= 0.3f;
-            if (TargetObject[i].tag != "Player")
-            TargetObject[i].GetComponent<Creature>().KnockBack(TargetObject[i].transform.position.x - player.transform.position.x);
+            Creature tempCreatureScript = TargetObject[i].GetComponent<Creature>();
+
+            tempCreatureScript.Life -= 0.3f;
+            //if (TargetObject[i].tag != "Player")
+            tempCreatureScript.KnockBack(0.5f);
         }
     }
 

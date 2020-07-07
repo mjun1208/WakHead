@@ -6103,6 +6103,17 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2305061804957027470, guid: 9706d08545b9c0a47a67124d1090f3de,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bd293dc32f4aaf94e8274f2fac2cdf89,
+        type: 3}
+    - target: {fileID: 2305061804957027470, guid: 9706d08545b9c0a47a67124d1090f3de,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5408129895890628841, guid: 9706d08545b9c0a47a67124d1090f3de,
         type: 3}
       propertyPath: viewIdField
