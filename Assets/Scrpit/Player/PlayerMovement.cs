@@ -87,10 +87,17 @@ public class PlayerMovement : Creature, IPunObservable
             CanMove = true;
         }
 
+        if (animator.GetBool("Skill_2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        {
+            animator.SetBool("Skill_2", false);
+            CanMove = true;
+        }
+
         if (CanMove)
         {
             Move_Input();
             Skill_1();
+            Skill_2();
         }
 
         if (this.Life <= 0)
@@ -173,6 +180,10 @@ public class PlayerMovement : Creature, IPunObservable
 
     public void Skill_2()
     {
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            CanMove = false;
+            animator.SetBool("Skill_2", true);
+        }
     }
 }

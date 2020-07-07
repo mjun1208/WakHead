@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class PlayerAttack : MonoBehaviourPunCallbacks
 {
     public PlayerMovement player;
+    public GameObject Bullet;
     public List<GameObject> TargetObject = new List<GameObject>();
 
     void Start()
@@ -27,6 +28,12 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
             photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
     }
 
+    public void Attack2()
+    {
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
+    }
+
 
     [PunRPC]
     public void DoAttack()
@@ -39,6 +46,12 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
             //if (TargetObject[i].tag != "Player")
             tempCreatureScript.KnockBack(0.5f);
         }
+    }
+
+    public void DoAttack2()
+    {
+        GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);
+            bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
