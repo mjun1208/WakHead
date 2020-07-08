@@ -24,6 +24,8 @@ public class PlayerMovement : Creature, IPunObservable
     private int CurReSpawnTime = 0;
     private int OldReSpawnTime = 0;
 
+    public Collider2D collider;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -92,6 +94,7 @@ public class PlayerMovement : Creature, IPunObservable
         {
             if (!IsDead)
             {
+                collider.enabled = false;
                 IsDead = true;
                 ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
                 Grapic.SetActive(false);
@@ -113,10 +116,13 @@ public class PlayerMovement : Creature, IPunObservable
                     animator.SetBool("Attack", false);
                     animator.SetBool("Walk", false);
                 }
+
+                return;
             }
         }
         else
         {
+            collider.enabled = true;
             IsDead = false;
             Grapic.SetActive(true);
         }

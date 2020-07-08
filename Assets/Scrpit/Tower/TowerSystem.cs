@@ -16,7 +16,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject Panel;
     public Text Paneltext;
 
-    public BulletAdmin Bullet;
+    public TowerBulletAdmin Bullet;
     public MinionAdmin Minion;
 
     int CurShootDelay = 0;
@@ -31,6 +31,14 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(TowerHp);
+        }
+        else
+        {
+            TowerHp = (int)stream.ReceiveNext();
+        }
         //throw new System.NotImplementedException();
     }
 
@@ -82,6 +90,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
             OldSpawnDelay = CurSpawnDelay;
         }
     }
+
     [PunRPC]
     public void Attack()
     {

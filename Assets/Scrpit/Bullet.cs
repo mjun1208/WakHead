@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviourPunCallbacks
     {
         transform.Translate(direction * 12 * Time.deltaTime,0,0);
         if (transform.position.x >= 50 || transform.position.x <= -50)
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviourPunCallbacks
                     tempCreatureScript.KnockBack(power);
 
 
-                    Destroy(gameObject);
+                    this.gameObject.SetActive(false);
                 }
             }
             else if (collision.gameObject.tag == "Player")
@@ -65,8 +65,7 @@ public class Bullet : MonoBehaviourPunCallbacks
                         power = -2f;
                     tempCreatureScript.KnockBack(power);
 
-
-                    Destroy(gameObject);
+                    this.gameObject.SetActive(false);
                 }
             }
         }

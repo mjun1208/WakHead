@@ -402,6 +402,7 @@ MonoBehaviour:
   MinYPos: -1
   MaxYPos: 0
   Grapic: {fileID: 6642160487387641285}
+  collider: {fileID: 6369809698047216561}
 --- !u!50 &6369809698047216573
 Rigidbody2D:
   serializedVersion: 4

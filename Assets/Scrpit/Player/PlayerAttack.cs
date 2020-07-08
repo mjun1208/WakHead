@@ -58,9 +58,10 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DoAttack2()
     {
-        GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);
-        bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
-        bul.GetComponent<Bullet>().player = player;
+        BulletAdmin.instance.SpawnBullet(player.transform.position, (int)player.transform.localScale.x, player);
+        //GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);
+        //bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
+        //bul.GetComponent<Bullet>().player = player;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
