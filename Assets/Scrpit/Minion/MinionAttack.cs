@@ -21,7 +21,7 @@ public class MinionAttack : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            minion.TargetObject.GetComponent<TowerSystem>().TowerHp -= 1f;
+            minion.TargetObject.GetComponent<TowerSystem>().OnDamage(1f);
             minion.TargetObject.GetComponent<TowerSystem>().Hit();
         }
     }

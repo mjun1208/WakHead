@@ -31,15 +31,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(TowerHp);
-        }
-        else
-        {
-            TowerHp = (int)stream.ReceiveNext();
-        }
-        //throw new System.NotImplementedException();
+        //a
     }
 
 
@@ -58,7 +50,7 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         if (!PhotonNetwork.IsMasterClient)
             return;
         photonView.RPC("Spawn", RpcTarget.AllViaServer, null);
-        photonView.RPC("Attack", RpcTarget.AllViaServer, null);
+        //photonView.RPC("Attack", RpcTarget.AllViaServer, null);
     }
 
     void ChangeTeam()
@@ -103,6 +95,19 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
                 OldShootDelay = CurShootDelay;
             }
         }
+    }
+
+
+    public void OnDamage(float Damage)
+    {
+        TowerHp -= Damage;
+        photonView.RPC("ApplyLife", RpcTarget.Others, TowerHp);
+    }
+
+    [PunRPC]
+    public void ApplyLife(float life)
+    {
+        TowerHp = life;
     }
 
     IEnumerator MinionSpawn(int SpawnCount)
