@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class Bullet : MonoBehaviourPunCallbacks
+public class Bullet : MonoBehaviour
 {
     public PlayerMovement player;   
     public int direction = 0;
@@ -25,49 +22,49 @@ public class Bullet : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (collision.gameObject.tag == "Minion")
-            {
-                if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
-                {
-                    Creature tempCreatureScript = collision.gameObject.GetComponent<Creature>();
-
-                    tempCreatureScript.OnDamage(1.0f);
-
-                    Vector2 Dir = collision.gameObject.transform.position - player.transform.position;
-                    Dir.Normalize();
-                    float power;
-                    if (Dir.x > 0)
-                        power = 2f;
-                    else
-                        power = -2f;
-                    tempCreatureScript.KnockBack(power);
-
-
-                    this.gameObject.SetActive(false);
-                }
-            }
-            else if (collision.gameObject.tag == "Player")
-            {
-                if (collision.gameObject != player.gameObject)
-                {
-                    Creature tempCreatureScript = collision.gameObject.GetComponent<Creature>();
-
-                    tempCreatureScript.OnDamage(1.0f);
-
-                    Vector2 Dir = collision.gameObject.transform.position - player.transform.position;
-                    Dir.Normalize();
-                    float power;
-                    if (Dir.x > 0)
-                        power = 2f;
-                    else
-                        power = -2f;
-                    tempCreatureScript.KnockBack(power);
-
-                    this.gameObject.SetActive(false);
-                }
-            }
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    if (collision.gameObject.tag == "Minion")
+        //    {
+        //        if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
+        //        {
+        //            Creature tempCreatureScript = collision.gameObject.GetComponent<Creature>();
+        //
+        //            tempCreatureScript.OnDamage(1.0f);
+        //
+        //            Vector2 Dir = collision.gameObject.transform.position - player.transform.position;
+        //            Dir.Normalize();
+        //            float power;
+        //            if (Dir.x > 0)
+        //                power = 2f;
+        //            else
+        //                power = -2f;
+        //            tempCreatureScript.KnockBack(power);
+        //
+        //
+        //            this.gameObject.SetActive(false);
+        //        }
+        //    }
+        //    else if (collision.gameObject.tag == "Player")
+        //    {
+        //        if (collision.gameObject != player.gameObject)
+        //        {
+        //            Creature tempCreatureScript = collision.gameObject.GetComponent<Creature>();
+        //
+        //            tempCreatureScript.OnDamage(1.0f);
+        //
+        //            Vector2 Dir = collision.gameObject.transform.position - player.transform.position;
+        //            Dir.Normalize();
+        //            float power;
+        //            if (Dir.x > 0)
+        //                power = 2f;
+        //            else
+        //                power = -2f;
+        //            tempCreatureScript.KnockBack(power);
+        //
+        //            this.gameObject.SetActive(false);
+        //        }
+        //    }
+        //}
     }
 }

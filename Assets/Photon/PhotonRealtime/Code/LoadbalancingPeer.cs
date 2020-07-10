@@ -113,7 +113,7 @@ namespace Photon.Realtime
                 this.SocketImplementationConfig[ConnectionProtocol.WebSocketSecure] = websocketType;
             }
 
-            #if NET_4_6 && (UNITY_EDITOR || !ENABLE_IL2CPP) && !NETFX_CORE
+            #if NET_4_6 && (UNITY_EDITOR || !ENABLE_IL2CPP)
             this.SocketImplementationConfig[ConnectionProtocol.Udp] = typeof(SocketUdpAsync);
             this.SocketImplementationConfig[ConnectionProtocol.Tcp] = typeof(SocketTcpAsync);
             #endif
@@ -801,6 +801,7 @@ namespace Photon.Realtime
                 this.Listener.DebugReturn(DebugLevel.INFO, "OpAuthenticateOnce(): authValues = "  + authValues + ", region = " + regionCode + ", encryption = " + encryptionMode);
             }
 
+
             var opParameters = new Dictionary<byte, object>();
 
             // shortcut, if we have a Token
@@ -904,7 +905,7 @@ namespace Photon.Realtime
         /// <returns>If operation could be enqueued for sending. Sent when calling: Service or SendOutgoingCommands.</returns>
         public virtual bool OpRaiseEvent(byte eventCode, object customEventContent, RaiseEventOptions raiseEventOptions, SendOptions sendOptions)
         {
-            var paramDict = this.paramDictionaryPool.Acquire();
+            var paramDict = this.paramDictionaryPool.Pop();
             try
             {
                 if (raiseEventOptions != null)
@@ -959,7 +960,7 @@ namespace Photon.Realtime
             }
             finally
             {
-                this.paramDictionaryPool.Release(paramDict);
+                this.paramDictionaryPool.Push(paramDict);
             }
         }
 
@@ -1448,7 +1449,7 @@ namespace Photon.Realtime
         /// <summary>(250) Code for broadcast parameter of OpSetProperties method.</summary>
         public const byte Broadcast = (byte)250;
 
-        /// <summary>(252) Code for list of players in a room.</summary>
+        /// <summary>(252) Code for list of players in a room. Currently not used.</summary>
         public const byte ActorList = (byte)252;
 
         /// <summary>(254) Code of the Actor of an operation. Used for property get and set.</summary>

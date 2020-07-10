@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5154411073514254344}
   - component: {fileID: 8084647332089131222}
   - component: {fileID: 827101833292403880}
-  - component: {fileID: 8383523391489694600}
   m_Layer: 0
   m_Name: Skill_1
   m_TagString: Untagged
@@ -95,28 +94,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8383523391489694600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6030558777870056017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 8084647332089131222}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &6642160487387641285
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,8 +107,6 @@ GameObject:
   - component: {fileID: 6642160487387641287}
   - component: {fileID: 6369809696123350823}
   - component: {fileID: 6369809696123350822}
-  - component: {fileID: 559037224498871920}
-  - component: {fileID: 3150964177584908166}
   - component: {fileID: 1970131250326597629}
   m_Layer: 0
   m_Name: Grapic
@@ -265,58 +240,6 @@ MonoBehaviour:
   player: {fileID: 6642160487493563849}
   Bullet: {fileID: 8931185625124295178, guid: 9f03b78ef7f4e4a44bdb2cacd5a81b25, type: 3}
   TargetObject: []
---- !u!114 &559037224498871920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642160487387641285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 3150964177584908166}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &3150964177584908166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642160487387641285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 2
-    Name: Walk
-  - Type: 4
-    SynchronizeType: 2
-    Name: Attack
-  - Type: 4
-    SynchronizeType: 2
-    Name: Skill_1
-  - Type: 4
-    SynchronizeType: 2
-    Name: Skill_2
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
 --- !u!114 &1970131250326597629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,8 +278,6 @@ GameObject:
   - component: {fileID: 6642160487493563849}
   - component: {fileID: 6369809698047216573}
   - component: {fileID: 6369809698047216561}
-  - component: {fileID: 8740496218297729723}
-  - component: {fileID: 7912550225623685550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -450,40 +371,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 0.8}
   m_EdgeRadius: 0
---- !u!114 &8740496218297729723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642160487493563855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 6642160487493563849}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &7912550225623685550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642160487493563855}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1

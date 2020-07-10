@@ -2,34 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class MinionMovement : Creature, IPunObservable
+public class MinionMovement : Creature
 {
     public bool isAttack = false;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(this.transform.position);
-            stream.SendNext(this.transform.localScale);
-
-            stream.SendNext(RedTeam);
-            stream.SendNext(this.Life);
-            stream.SendNext(this.CanMove);
-        }
-        else
-        {
-            this.transform.position = (Vector3)stream.ReceiveNext();
-            this.transform.localScale = (Vector3)stream.ReceiveNext();
-
-            RedTeam = (bool)stream.ReceiveNext();
-            this.Life = (float)stream.ReceiveNext();
-            this.CanMove = (bool)stream.ReceiveNext();
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(this.transform.position);
+    //        stream.SendNext(this.transform.localScale);
+    //
+    //        stream.SendNext(RedTeam);
+    //        stream.SendNext(this.Life);
+    //        stream.SendNext(this.CanMove);
+    //    }
+    //    else
+    //    {
+    //        this.transform.position = (Vector3)stream.ReceiveNext();
+    //        this.transform.localScale = (Vector3)stream.ReceiveNext();
+    //
+    //        RedTeam = (bool)stream.ReceiveNext();
+    //        this.Life = (float)stream.ReceiveNext();
+    //        this.CanMove = (bool)stream.ReceiveNext();
+    //    }
+    //}
 
     private void Awake()
     {
@@ -48,8 +45,8 @@ public class MinionMovement : Creature, IPunObservable
         ChangeTeam();
         Dead();
 
-        if (!PhotonNetwork.IsMasterClient)
-            return;
+        //if (!PhotonNetwork.IsMasterClient)
+        //    return;
 
         if (CanMove)
         {

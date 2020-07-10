@@ -4,9 +4,6 @@ using UnityEngine;
 
 using UnityEngine.SceneManagement;
 
-using Photon.Pun;
-using Photon.Realtime;
-
 using UnityEngine.UI;
 using TMPro;
 
@@ -19,7 +16,7 @@ public class NetworkManager : MonoBehaviour
 
     public void Disconnect()
     {
-        PhotonNetwork.Disconnect();
+        //PhotonNetwork.Disconnect();
     }
     
 }

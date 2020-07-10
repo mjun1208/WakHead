@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +18,10 @@ public class MinionAttack : MonoBehaviour
 
     void Attack()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            minion.TargetObject.GetComponent<TowerSystem>().OnDamage(1f);
-            minion.TargetObject.GetComponent<TowerSystem>().Hit();
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    minion.TargetObject.GetComponent<TowerSystem>().OnDamage(1f);
+        //    minion.TargetObject.GetComponent<TowerSystem>().Hit();
+        //}
     }
 }

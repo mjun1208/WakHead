@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class IsMine : MonoBehaviourPunCallbacks
+public class IsMine : MonoBehaviour
 {
 }

@@ -1216,7 +1216,6 @@ GameObject:
   m_Component:
   - component: {fileID: 226779564}
   - component: {fileID: 226779565}
-  - component: {fileID: 226779566}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -1316,28 +1315,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minions: []
   Minion_Script: []
---- !u!114 &226779566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226779563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 226779565}
-  viewIdField: 142
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &229774377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2977,7 +2954,6 @@ GameObject:
   m_Component:
   - component: {fileID: 426739641}
   - component: {fileID: 426739640}
-  - component: {fileID: 426739639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2985,28 +2961,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &426739639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426739638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 2
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 426739640}
-  viewIdField: 144
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &426739640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7011,7 +6965,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1127895551}
   - component: {fileID: 1127895550}
-  - component: {fileID: 1127895552}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -7058,28 +7011,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1127895552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127895549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1127895550}
-  viewIdField: 143
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!4 &1138165896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1664431669145434885, guid: 22ceed27316ead041af3f827442099a9,
@@ -9532,7 +9463,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1538552156}
   - component: {fileID: 1538552155}
-  - component: {fileID: 1538552154}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -9540,28 +9470,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1538552154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1538552153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1538552155}
-  viewIdField: 154
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1538552155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9631,7 +9539,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1567167780}
   - component: {fileID: 1567167781}
-  - component: {fileID: 1567167782}
   m_Layer: 0
   m_Name: Particle
   m_TagString: Untagged
@@ -9684,28 +9591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Particles: []
   NowCount: 0
---- !u!114 &1567167782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567167779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1567167781}
-  viewIdField: 153
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &1584375457
 PrefabInstance:
   m_ObjectHideFlags: 0

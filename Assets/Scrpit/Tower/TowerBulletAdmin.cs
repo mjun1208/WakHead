@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class TowerBulletAdmin : MonoBehaviourPunCallbacks, IPunObservable
+public class TowerBulletAdmin : MonoBehaviour
 {
     public List<GameObject> Bullets = new List<GameObject>();
     public List<BulletMovement> Bullet_Script = new List<BulletMovement>();
     private int NowCount = 0;
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            for (int i = 0; i < Bullets.Count; i++)
-            {
-                stream.SendNext(Bullets[i].activeSelf);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < Bullets.Count; i++)
-            {
-                Bullets[i].SetActive((bool)stream.ReceiveNext());
-            }
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        for (int i = 0; i < Bullets.Count; i++)
+    //        {
+    //            stream.SendNext(Bullets[i].activeSelf);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < Bullets.Count; i++)
+    //        {
+    //            Bullets[i].SetActive((bool)stream.ReceiveNext());
+    //        }
+    //    }
+    //}
 
     private void Awake()
     {

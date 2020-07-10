@@ -9,7 +9,6 @@
 // <author>developer@photonengine.com</author>
 // ----------------------------------------------------------------------------
 
-
 #if UNITY_4_7 || UNITY_5 || UNITY_5_3_OR_NEWER
 #define SUPPORTED_UNITY
 #endif
@@ -22,7 +21,6 @@ namespace Photon.Realtime
 {
     using System;
     using System.Text;
-    using System.Threading;
     using System.Net;
     using System.Collections;
     using System.Collections.Generic;
@@ -355,7 +353,11 @@ namespace Photon.Realtime
 
             if (ping == null)
             {
-                if (RegionHandler.PingImplementation != null)
+                if (RegionHandler.PingImplementation == null)
+                {
+                    ping = new PingMono();
+                }
+                else
                 {
                     ping = (PhotonPing)Activator.CreateInstance(RegionHandler.PingImplementation);
                 }
@@ -364,15 +366,6 @@ namespace Photon.Realtime
             return ping;
         }
 
-
-        /// <summary>
-        /// Starts the ping routine for the assigned region.
-        /// </summary>
-        /// <remarks>
-        /// Pinging runs in a ThreadPool worker item or (if needed) in a Thread.
-        /// WebGL runs pinging on the Main Thread as coroutine.
-        /// </remarks>
-        /// <returns>Always true.</returns>
         public bool Start()
         {
             // all addresses for Photon region servers will contain a :port ending. this needs to be removed first.
@@ -393,35 +386,15 @@ namespace Photon.Realtime
             this.CurrentAttempt = 0;
             this.rttResults = new List<int>(Attempts);
 
-
             #if PING_VIA_COROUTINE
             MonoBehaviourEmpty.Instance.StartCoroutine(this.RegionPingCoroutine());
+            #elif UNITY_SWITCH
+            SupportClass.StartBackgroundCalls(this.RegionPingThreaded, 0);
             #else
-            bool queued = false;
-            #if !NETFX_CORE
-            try
-            {
-                queued = ThreadPool.QueueUserWorkItem(this.RegionPingPooled);
-            }
-            catch
-            {
-                queued = false;
-            }
+            SupportClass.StartBackgroundCalls(this.RegionPingThreaded, 0, "RegionPing_" + this.region.Code+"_"+this.region.Cluster);
             #endif
-            if (!queued)
-            {
-                SupportClass.StartBackgroundCalls(this.RegionPingThreaded, 0, "RegionPing_" + this.region.Code + "_" + this.region.Cluster);
-            }
-            #endif
-
 
             return true;
-        }
-
-        // wraps RegionPingThreaded() to get the signature compatible with ThreadPool.QueueUserWorkItem
-        protected internal void RegionPingPooled(object context)
-        {
-            this.RegionPingThreaded();
         }
 
         protected internal bool RegionPingThreaded()
@@ -561,7 +534,6 @@ namespace Photon.Realtime
             yield return null;
         }
         #endif
-
 
         public string GetResults()
         {

@@ -1,9 +1,8 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletAdmin : MonoBehaviourPunCallbacks , IPunObservable
+public class BulletAdmin : MonoBehaviour
 {
     static public BulletAdmin instance;
     public List<GameObject> Bullets = new List<GameObject>();
@@ -11,23 +10,23 @@ public class BulletAdmin : MonoBehaviourPunCallbacks , IPunObservable
 
     int NowCount = 0;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            for (int i = 0; i < Bullets.Count; i++)
-            {
-                stream.SendNext(Bullets[i].activeSelf);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < Bullets.Count; i++)
-            {
-                Bullets[i].SetActive((bool)stream.ReceiveNext());
-            }
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        for (int i = 0; i < Bullets.Count; i++)
+    //        {
+    //            stream.SendNext(Bullets[i].activeSelf);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < Bullets.Count; i++)
+    //        {
+    //            Bullets[i].SetActive((bool)stream.ReceiveNext());
+    //        }
+    //    }
+    //}
 
     private void Awake()
     {

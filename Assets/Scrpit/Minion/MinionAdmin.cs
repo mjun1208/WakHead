@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class MinionAdmin : MonoBehaviourPunCallbacks , IPunObservable
+public class MinionAdmin : MonoBehaviour
 {
     public List<GameObject> Minions = new List<GameObject>();
     public List<MinionMovement> Minion_Script = new List<MinionMovement>();
     private int NowCount = 0;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            for (int i = 0; i < Minions.Count; i++)
-            {
-                stream.SendNext(Minions[i].activeSelf);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < Minions.Count; i++)
-            {
-                Minions[i].SetActive((bool)stream.ReceiveNext());
-            }
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        for (int i = 0; i < Minions.Count; i++)
+    //        {
+    //            stream.SendNext(Minions[i].activeSelf);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < Minions.Count; i++)
+    //        {
+    //            Minions[i].SetActive((bool)stream.ReceiveNext());
+    //        }
+    //    }
+    //}
 
     private void Awake()
     {

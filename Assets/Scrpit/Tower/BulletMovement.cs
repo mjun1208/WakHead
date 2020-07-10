@@ -1,23 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using Photon.Pun;
-using Photon.Realtime;
-
-public class BulletMovement : MonoBehaviourPunCallbacks , IPunObservable
+public class BulletMovement : MonoBehaviour
 {
     public GameObject TargetObject;
     public bool RedTeam = true;
     public SpriteRenderer renderer;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-            stream.SendNext(RedTeam);
-        else
-            RedTeam = (bool)stream.ReceiveNext();
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //        stream.SendNext(RedTeam);
+    //    else
+    //        RedTeam = (bool)stream.ReceiveNext();
+    //}
 
     private void Awake()
     {

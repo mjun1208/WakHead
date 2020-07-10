@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class Creature : MonoBehaviourPunCallbacks
+public class Creature : MonoBehaviour
 {
     protected Animator animator;
     protected SpriteRenderer sprite;
@@ -35,7 +32,7 @@ public class Creature : MonoBehaviourPunCallbacks
         Vector3 TargetPos = this.transform.position + new Vector3(power, 0, 0);
 
         while (Vector3.Distance(this.transform.position, TargetPos) > 0.1f) {
-            photonView.RPC("DoGrab", RpcTarget.All, TargetPos);
+            //photonView.RPC("DoGrab", RpcTarget.All, TargetPos);
             yield return null;
         }
         CanMove = true;
@@ -46,7 +43,7 @@ public class Creature : MonoBehaviourPunCallbacks
     {
         while (Vector3.Distance(this.transform.position, Target) > 0.45f)
         {
-            photonView.RPC("DoGrab", RpcTarget.All, Target);
+            //photonView.RPC("DoGrab", RpcTarget.All, Target);
             //this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
             yield return null;
         }
@@ -55,7 +52,6 @@ public class Creature : MonoBehaviourPunCallbacks
         yield return null;
     }
 
-    [PunRPC]
     public void DoGrab(Vector3 Target)
     {
         this.transform.position = Vector3.Lerp(this.transform.position, Target, 10.0f * Time.deltaTime);
@@ -64,10 +60,9 @@ public class Creature : MonoBehaviourPunCallbacks
     public void OnDamage(float damage)
     {
         Life -= damage; 
-        photonView.RPC("ApplyLife", RpcTarget.Others, Life);
+        ///photonView.RPC("ApplyLife", RpcTarget.Others, Life);
     }
 
-    [PunRPC]
     public void ApplyLife(float life)
     {
         Life = life;

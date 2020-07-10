@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using Photon.Pun;
-using Photon.Realtime;
-
-public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable 
+public class TowerSystem : MonoBehaviour
 {
     public GameObject TargetObject;
     public bool RedTeam = true;
@@ -27,18 +24,10 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     public Animator anime;
 
-    //private PhotonView photonView_ = GameObject.Find("PhotonController").GetComponent<PhotonView>();
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        //a
-    }
-
-
     void Start()
     {
-        OldSpawnDelay = PhotonNetwork.ServerTimestamp - 15 * 1000;
-        OldShootDelay = PhotonNetwork.ServerTimestamp - 2 * 1000;
+        //OldSpawnDelay = PhotonNetwork.ServerTimestamp - 15 * 1000;
+        //OldShootDelay = PhotonNetwork.ServerTimestamp - 2 * 1000;
     }
 
     // Update is called once per frame
@@ -47,9 +36,9 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         Hp();
         ChangeTeam();
 
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-        photonView.RPC("Spawn", RpcTarget.AllViaServer, null);
+        //if (!PhotonNetwork.IsMasterClient)
+        //    return;
+        //photonView.RPC("Spawn", RpcTarget.AllViaServer, null);
         //photonView.RPC("Attack", RpcTarget.AllViaServer, null);
     }
 
@@ -71,10 +60,9 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    [PunRPC]
     public void Spawn()
     {
-        CurSpawnDelay = PhotonNetwork.ServerTimestamp;
+        //CurSpawnDelay = PhotonNetwork.ServerTimestamp;
 
         if (CurSpawnDelay - OldSpawnDelay > 15 * 1000)
         {
@@ -83,10 +71,9 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    [PunRPC]
     public void Attack()
     {
-        CurShootDelay = PhotonNetwork.ServerTimestamp;
+        //CurShootDelay = PhotonNetwork.ServerTimestamp;
         if (isAttack)
         {
             if (CurShootDelay - OldShootDelay > 2 * 1000)
@@ -100,11 +87,10 @@ public class TowerSystem : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnDamage(float Damage)
     {
-        TowerHp -= Damage;
-        photonView.RPC("ApplyLife", RpcTarget.Others, TowerHp);
+       // TowerHp -= Damage;
+       // photonView.RPC("ApplyLife", RpcTarget.Others, TowerHp);
     }
 
-    [PunRPC]
     public void ApplyLife(float life)
     {
         TowerHp = life;

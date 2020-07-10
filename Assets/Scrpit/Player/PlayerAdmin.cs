@@ -1,13 +1,8 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.Rendering;
-
-public class PlayerAdmin : MonoBehaviourPunCallbacks , IPunObservable
+public class PlayerAdmin : MonoBehaviour
 {
     public static PlayerAdmin instance;
 
@@ -15,23 +10,23 @@ public class PlayerAdmin : MonoBehaviourPunCallbacks , IPunObservable
     public List<PlayerMovement> Player_Script = new List<PlayerMovement>();
     private int NowCount = 0;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            for (int i = 0; i < Players.Count; i++)
-            {
-                stream.SendNext(Players[i].activeSelf);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < Players.Count; i++)
-            {
-                Players[i].SetActive((bool)stream.ReceiveNext());
-            }
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        for (int i = 0; i < Players.Count; i++)
+    //        {
+    //            stream.SendNext(Players[i].activeSelf);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < Players.Count; i++)
+    //        {
+    //            Players[i].SetActive((bool)stream.ReceiveNext());
+    //        }
+    //    }
+    //}
 
     // Start is called before the first frame update
     private void Awake()
@@ -44,6 +39,6 @@ public class PlayerAdmin : MonoBehaviourPunCallbacks , IPunObservable
             Player_Script.Add(this.transform.GetChild(i).GetComponent<PlayerMovement>());
         }
         //SpawnPlayer();
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
     }
 }

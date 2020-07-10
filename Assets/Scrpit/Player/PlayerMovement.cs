@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.Rendering;
-
-public class PlayerMovement : Creature, IPunObservable
+public class PlayerMovement : Creature
 {
     public bool IsLocalPlayer = false;
     Vector3 OldPos;
@@ -26,31 +22,31 @@ public class PlayerMovement : Creature, IPunObservable
 
     public Collider2D collider;
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(CurPos);
-            stream.SendNext(this.transform.localScale);
-            stream.SendNext(this.RedTeam);
-            //stream.SendNext(this.Life);
-            stream.SendNext(Grapic.activeSelf);
-
-            stream.SendNext(!this.IsLocalPlayer);
-            stream.SendNext(this.CanMove);
-        }
-        else
-        {
-            CurPos = (Vector3)stream.ReceiveNext();
-            this.transform.localScale = (Vector3)stream.ReceiveNext();
-            this.RedTeam = (bool)stream.ReceiveNext();
-            //this.Life = (float)stream.ReceiveNext();
-            Grapic.SetActive((bool)stream.ReceiveNext());
-
-            this.IsLocalPlayer = (bool)stream.ReceiveNext();
-            this.CanMove = (bool)stream.ReceiveNext();
-        }
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(CurPos);
+    //        stream.SendNext(this.transform.localScale);
+    //        stream.SendNext(this.RedTeam);
+    //        //stream.SendNext(this.Life);
+    //        stream.SendNext(Grapic.activeSelf);
+    //
+    //        stream.SendNext(!this.IsLocalPlayer);
+    //        stream.SendNext(this.CanMove);
+    //    }
+    //    else
+    //    {
+    //        CurPos = (Vector3)stream.ReceiveNext();
+    //        this.transform.localScale = (Vector3)stream.ReceiveNext();
+    //        this.RedTeam = (bool)stream.ReceiveNext();
+    //        //this.Life = (float)stream.ReceiveNext();
+    //        Grapic.SetActive((bool)stream.ReceiveNext());
+    //
+    //        this.IsLocalPlayer = (bool)stream.ReceiveNext();
+    //        this.CanMove = (bool)stream.ReceiveNext();
+    //    }
+    //}
 
     private void Awake()
     {
@@ -59,10 +55,10 @@ public class PlayerMovement : Creature, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-            RedTeam = true;
-        else
-            RedTeam = false;
+        //if (PhotonNetwork.IsMasterClient)
+        //    RedTeam = true;
+        //else
+        //    RedTeam = false;
 
         animator = transform.GetChild(0).GetComponent<Animator>();
         CurPos = this.transform.position;
@@ -71,8 +67,8 @@ public class PlayerMovement : Creature, IPunObservable
         CurrentSpeed = MoveSpeed;
         AttackSpeed = MoveSpeed * 0.2f;
 
-        if (photonView.IsMine)
-            CameraManager.instance.player = this.gameObject;
+        //if (photonView.IsMine)
+        //    CameraManager.instance.player = this.gameObject;
     }
 
     // Update is called once per frame
@@ -84,11 +80,11 @@ public class PlayerMovement : Creature, IPunObservable
         base.Update();
         //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
 
-        if (!photonView.IsMine) {
-            this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 10.0f * Time.deltaTime);
-            
-            return;
-        }
+        //if (!photonView.IsMine) {
+        //    this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 10.0f * Time.deltaTime);
+        //    
+        //    return;
+        //}
 
         if (this.Life <= 0)
         {
@@ -98,16 +94,16 @@ public class PlayerMovement : Creature, IPunObservable
                 IsDead = true;
                 ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
                 Grapic.SetActive(false);
-                OldReSpawnTime = PhotonNetwork.ServerTimestamp;
+                //OldReSpawnTime = PhotonNetwork.ServerTimestamp;
             }
             else
             {
-                CurReSpawnTime = PhotonNetwork.ServerTimestamp;
+                //CurReSpawnTime = PhotonNetwork.ServerTimestamp;
                 int NowTime = CurReSpawnTime - OldReSpawnTime;
                 if (NowTime > 3 * 1000)
                 {
                     this.Life = 4;
-                    photonView.RPC("ApplyLife", RpcTarget.Others, Life);
+                    //photonView.RPC("ApplyLife", RpcTarget.Others, Life);
 
                     transform.position = Vector3.zero;
 

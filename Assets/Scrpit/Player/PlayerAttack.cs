@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
-using UnityEngine.UIElements;
-
-public class PlayerAttack : MonoBehaviourPunCallbacks
+public class PlayerAttack : MonoBehaviour
 {
     public PlayerMovement player;
     public GameObject Bullet;
@@ -22,20 +19,18 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
         
     }
 
-    public void Attack()
-    {
-        if (PhotonNetwork.IsMasterClient)
-            photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
-    }
+    //public void Attack()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //        photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
+    //}
+    //
+    //public void Attack2()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //        photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
+    //}
 
-    public void Attack2()
-    {
-        if (PhotonNetwork.IsMasterClient)
-            photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
-    }
-
-
-    [PunRPC]
     public void DoAttack()
     {
         for (int i = 0; i < TargetObject.Count; i++)
@@ -55,7 +50,6 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
     public void DoAttack2()
     {
         BulletAdmin.instance.SpawnBullet(player.transform.position, (int)player.transform.localScale.x, player);
@@ -66,39 +60,39 @@ public class PlayerAttack : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (collision.gameObject.tag == "Minion")
-            {
-                if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
-                {
-                    TargetObject.Add(collision.gameObject);
-                }
-            }
-            else if (collision.gameObject.tag == "Player")
-            {
-                if (collision.gameObject != player.gameObject)
-                    TargetObject.Add(collision.gameObject);
-            }
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    if (collision.gameObject.tag == "Minion")
+        //    {
+        //        if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
+        //        {
+        //            TargetObject.Add(collision.gameObject);
+        //        }
+        //    }
+        //    else if (collision.gameObject.tag == "Player")
+        //    {
+        //        if (collision.gameObject != player.gameObject)
+        //            TargetObject.Add(collision.gameObject);
+        //    }
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (collision.gameObject.tag == "Minion")
-            {
-                if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)
-                {
-                    TargetObject.Remove(collision.gameObject);
-                }
-            }
-            else if (collision.gameObject.tag == "Player")
-            {
-                if (collision.gameObject != player.gameObject)
-                    TargetObject.Remove(collision.gameObject);
-            }
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //    if (collision.gameObject.tag == "Minion")
+        //    {
+        //        if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)
+        //        {
+        //            TargetObject.Remove(collision.gameObject);
+        //        }
+        //    }
+        //    else if (collision.gameObject.tag == "Player")
+        //    {
+        //        if (collision.gameObject != player.gameObject)
+        //            TargetObject.Remove(collision.gameObject);
+        //    }
+        //}
     }
 }
