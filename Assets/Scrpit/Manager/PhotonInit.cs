@@ -1,50 +1,50 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Photon.Pun;
-//using Photon.Realtime;
 
-using UnityEngine.SceneManagement;
+using Bolt;
+using Bolt.Matchmaking;
+using UdpKit;
 
-public class PhotonInit : MonoBehaviour
+
+public class PhotonInit : GlobalEventListener
 {
-    private string gameVersion = "1.0";
-    public string userId = "Wak";
-    public byte MaxPlayer = 2;
-
-    private void Awake()
+    public void ClickServerStart()
     {
-        //PhotonNetwork.AutomaticallySyncScene = true;
+        BoltLauncher.StartServer();
     }
 
-    public void ClickStartButton()
+    public void ClickClientStart()
     {
-        //OnConnectedToMaster();
+        BoltLauncher.StartClient();
     }
 
-    private void Start()
+    public override void BoltStartDone()
     {
-        //PhotonNetwork.GameVersion = this.gameVersion;
-        //PhotonNetwork.NickName = userId;
-        //
-        //PhotonNetwork.SendRate = 60;
-        //PhotonNetwork.SerializationRate = 60;
-        //
-        //PhotonNetwork.ConnectUsingSettings();
+        if (BoltNetwork.IsServer)
+        {
+            string matchName = Guid.NewGuid().ToString();
+
+            BoltMatchmaking.CreateSession(
+                sessionID: matchName,
+                sceneToLoad: "BangScene"
+            );
+        }
     }
 
-    //public override void OnConnectedToMaster()
-    //{
-    //    PhotonNetwork.JoinRandomRoom();
-    //}
-    //
-    //public override void OnJoinRandomFailed(short returnCode, string message)
-    //{
-    //    PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = this.MaxPlayer });
-    //}
-    //
-    //public override void OnJoinedRoom()
-    //{
-    //    SceneManager.LoadScene("BangScene");
-    //}
+    public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
+    {
+        Debug.LogFormat("Session list updated: {0} total sessions", sessionList.Count);
+
+        foreach (var session in sessionList)
+        {
+            UdpSession photonSession = session.Value as UdpSession;
+
+            if (photonSession.Source == UdpSessionSource.Photon)
+            {
+                BoltMatchmaking.JoinSession(photonSession);
+            }
+        }
+    }
 }

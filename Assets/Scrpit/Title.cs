@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Title : MonoBehaviour
 {
-    public GameObject StartButton;
-    public GameObject PhotonInit;
-    
-    public void ClickStartButton()
+    public GameObject ServerButton;
+    public GameObject ClientButton;
+
+    public void ClickButton()
     {
-        StartButton.SetActive(false);
-        PhotonInit.SetActive(true);
+        ServerButton.SetActive(false);
+        ClientButton.SetActive(false);
     }
 }

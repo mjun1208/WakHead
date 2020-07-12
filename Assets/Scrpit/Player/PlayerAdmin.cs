@@ -2,43 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAdmin : MonoBehaviour
+using Bolt;
+
+[BoltGlobalBehaviour]
+public class PlayerAdmin : Bolt.GlobalEventListener
 {
-    public static PlayerAdmin instance;
-
-    public List<GameObject> Players = new List<GameObject>();
-    public List<PlayerMovement> Player_Script = new List<PlayerMovement>();
-    private int NowCount = 0;
-
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        for (int i = 0; i < Players.Count; i++)
-    //        {
-    //            stream.SendNext(Players[i].activeSelf);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < Players.Count; i++)
-    //        {
-    //            Players[i].SetActive((bool)stream.ReceiveNext());
-    //        }
-    //    }
-    //}
-
-    // Start is called before the first frame update
-    private void Awake()
+    public override void SceneLoadLocalDone(string scene)
     {
-        instance = this;
-
-        for (int i = 0; i < this.transform.childCount; i++)
-        {
-            Players.Add(this.transform.GetChild(i).gameObject);
-            Player_Script.Add(this.transform.GetChild(i).GetComponent<PlayerMovement>());
-        }
-        //SpawnPlayer();
-        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

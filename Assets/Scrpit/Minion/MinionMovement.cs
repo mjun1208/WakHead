@@ -30,7 +30,6 @@ public class MinionMovement : Creature
 
     private void Awake()
     {
-        base.Awake();
     }
     void Start()
     {
@@ -39,9 +38,6 @@ public class MinionMovement : Creature
 
     void Update()
     {
-
-        base.Update();
-
         ChangeTeam();
         Dead();
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class CameraManager : MonoBehaviour
 {
     static public CameraManager instance; 
@@ -10,11 +11,9 @@ public class CameraManager : MonoBehaviour
     public float FollowSpeed = 1.2f;
 
     // Start is called before the first frame update
-
     private void Awake()
     {
         instance = this;
-        //PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     private void FixedUpdate()

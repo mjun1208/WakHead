@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Creature
+using Bolt;
+
+public class PlayerMovement : Bolt.EntityBehaviour<IPlayer>
 {
+    public Creature Mycreature;
+
     public bool IsLocalPlayer = false;
     Vector3 OldPos;
     Vector3 CurPos;
@@ -48,50 +52,36 @@ public class PlayerMovement : Creature
     //    }
     //}
 
-    private void Awake()
+    public override void Attached()
     {
-        base.Awake();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //if (PhotonNetwork.IsMasterClient)
-        //    RedTeam = true;
-        //else
-        //    RedTeam = false;
+        if (entity.IsOwner)
+            CameraManager.instance.player = this.gameObject;
 
-        animator = transform.GetChild(0).GetComponent<Animator>();
-        CurPos = this.transform.position;
-        OldPos = CurPos;
+        state.SetTransforms(state.PlayerTransform, transform);
+        state.SetAnimator(Mycreature.animator);
 
-        CurrentSpeed = MoveSpeed;
-        AttackSpeed = MoveSpeed * 0.2f;
-
-        //if (photonView.IsMine)
-        //    CameraManager.instance.player = this.gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(PhotonNetwork.Time);
-        //Debug.Log(PhotonNetwork.ServerTimestamp);
-
-        base.Update();
-        //sprite.sortingOrder = sprite.sortingOrder + 1;//미니언보다 한층 더 높은 레이어를 사용하여 왁굳형의 가시성을 올린다.
-
-        //if (!photonView.IsMine) {
-        //    this.transform.position = Vector3.Lerp(this.transform.position, CurPos, 10.0f * Time.deltaTime);
-        //    
-        //    return;
-        //}
-
-        if (this.Life <= 0)
+        if (entity.IsOwner)
         {
-            if (!IsDead)
+            state.LocalScale = this.transform.localScale;
+        }
+
+        state.AddCallback("LocalScale", ScaleChange);
+        //state.Animator.applyRootMotion = entity.IsOwner;
+    }
+    
+    void ScaleChange()
+    {
+        transform.localScale = state.LocalScale;
+    }
+
+    public override void SimulateOwner()
+    {
+        if (Mycreature.Life <= 0)
+        {
+            if (!Mycreature.IsDead)
             {
                 collider.enabled = false;
-                IsDead = true;
+                Mycreature.IsDead = true;
                 ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
                 Grapic.SetActive(false);
                 //OldReSpawnTime = PhotonNetwork.ServerTimestamp;
@@ -102,15 +92,15 @@ public class PlayerMovement : Creature
                 int NowTime = CurReSpawnTime - OldReSpawnTime;
                 if (NowTime > 3 * 1000)
                 {
-                    this.Life = 4;
+                    Mycreature.Life = 4;
                     //photonView.RPC("ApplyLife", RpcTarget.Others, Life);
 
                     transform.position = Vector3.zero;
 
-                    animator.SetBool("Skill_1", false);
-                    animator.SetBool("Skill_2", false);
-                    animator.SetBool("Attack", false);
-                    animator.SetBool("Walk", false);
+                    Mycreature.animator.SetBool("Skill_1", false);
+                    Mycreature.animator.SetBool("Skill_2", false);
+                    Mycreature.animator.SetBool("Attack", false);
+                    Mycreature.animator.SetBool("Walk", false);
                 }
 
                 return;
@@ -119,89 +109,96 @@ public class PlayerMovement : Creature
         else
         {
             collider.enabled = true;
-            IsDead = false;
+            Mycreature.IsDead = false;
             Grapic.SetActive(true);
         }
 
         CurPos = this.transform.position;
 
         //Move();   
-        if (animator.GetBool("Skill_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        if (Mycreature.animator.GetBool("Skill_1") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
-            animator.SetBool("Skill_1", false);
-            CanMove = true;
+            Mycreature.animator.SetBool("Skill_1", false);
+            Mycreature.CanMove = true;
         }
 
-        if (animator.GetBool("Skill_2") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        if (Mycreature.animator.GetBool("Skill_2") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
-            animator.SetBool("Skill_2", false);
-            CanMove = true;
+            Mycreature.animator.SetBool("Skill_2", false);
+            Mycreature.CanMove = true;
         }
 
-        if (CanMove)
+        if (Mycreature.CanMove)
         {
             Move_Input();
             Skill_1();
             Skill_2();
         }
     }
-    void Move()
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime * MoveSpeed;
+        //if (PhotonNetwork.IsMasterClient)
+        //    RedTeam = true;
+        //else
+        //    RedTeam = false;
 
-        transform.Translate(dir.x, dir.y, 0);
-
+        Mycreature.animator = transform.GetChild(0).GetComponent<Animator>();
         CurPos = this.transform.position;
+        OldPos = CurPos;
 
-        if (CurPos != OldPos)
-        {
-            //네트워크에 적용
-            OldPos = CurPos;
-        }
+        CurrentSpeed = Mycreature.MoveSpeed;
+        AttackSpeed = Mycreature.MoveSpeed * 0.2f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 
     void Move_Input()
     {
         if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
-            animator.SetBool("Walk", true);
-
-        if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow))
-            animator.SetBool("Walk", false);
+            Mycreature.animator.SetBool("Walk", true);
+        else
+            Mycreature.animator.SetBool("Walk", false);
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-CurrentSpeed * Time.deltaTime, 0, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.Translate(-CurrentSpeed * BoltNetwork.FrameDeltaTime, 0, 0);
+            state.LocalScale = new Vector3(-1, 1, 1);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(CurrentSpeed * Time.deltaTime, 0, 0);
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.Translate(CurrentSpeed * BoltNetwork.FrameDeltaTime, 0, 0);
+            state.LocalScale = new Vector3(1, 1, 1);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             if (transform.position.y <= MinYPos)
                 transform.position = new Vector3(transform.position.x, MinYPos, transform.position.z);
             else
-                transform.Translate(0, -CurrentSpeed * Time.deltaTime, 0);
+                transform.Translate(0, -CurrentSpeed * BoltNetwork.FrameDeltaTime, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
             if (transform.position.y >= MaxYPos)
                 transform.position = new Vector3(transform.position.x, MaxYPos, transform.position.z);
             else
-                transform.Translate(0, CurrentSpeed * Time.deltaTime, 0);
+                transform.Translate(0, CurrentSpeed * BoltNetwork.FrameDeltaTime, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+
+        if (Input.GetKey(KeyCode.Z))
         {
-            animator.SetBool("Attack", true);
+            Mycreature.animator.SetBool("Attack", true);
             CurrentSpeed = AttackSpeed;
         }
-        else if (Input.GetKeyUp(KeyCode.Z))
+        else
         {
-            animator.SetBool("Attack", false);
-            CurrentSpeed = MoveSpeed;
+            Mycreature.animator.SetBool("Attack", false);
+            CurrentSpeed = Mycreature.MoveSpeed;
         }
     }
 
@@ -209,8 +206,8 @@ public class PlayerMovement : Creature
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            CanMove = false;
-            animator.SetBool("Skill_1", true);
+            Mycreature.CanMove = false;
+            Mycreature.animator.SetBool("Skill_1", true);
         }
     }
 
@@ -218,8 +215,8 @@ public class PlayerMovement : Creature
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            CanMove = false;
-            animator.SetBool("Skill_2", true);
+            Mycreature.CanMove = false;
+            Mycreature.animator.SetBool("Skill_2", true);
         }
     }
 }
