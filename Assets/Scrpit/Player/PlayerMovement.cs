@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Bolt;
 
-public class PlayerMovement : Bolt.EntityBehaviour<IPlayer>
+public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
 {
     public Creature Mycreature;
 
@@ -63,15 +63,22 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayer>
         if (entity.IsOwner)
         {
             state.LocalScale = this.transform.localScale;
+            state.CanMove = Mycreature.CanMove;
         }
 
         state.AddCallback("LocalScale", ScaleChange);
+        state.AddCallback("CanMove", CanMoveChange);
         //state.Animator.applyRootMotion = entity.IsOwner;
     }
     
     void ScaleChange()
     {
         transform.localScale = state.LocalScale;
+    }
+
+    void CanMoveChange()
+    {
+        Mycreature.CanMove = state.CanMove;
     }
 
     public override void SimulateOwner()
@@ -150,11 +157,6 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayer>
 
         CurrentSpeed = Mycreature.MoveSpeed;
         AttackSpeed = Mycreature.MoveSpeed * 0.2f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void Move_Input()

@@ -2,34 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
 {
     public PlayerMovement player;
     public GameObject Bullet;
     public List<GameObject> TargetObject = new List<GameObject>();
 
-    void Start()
+    public override void Attached()
     {
-        
+        state.OnDoAttack = DoAttack;
+        state.OnDoAttack2 = DoAttack2;
     }
 
-
-    void Update()
+    public void Attack()
     {
-        
+        //if (entity.IsOwner)
+        //    state.DoAttack();
+        //if (PhotonNetwork.IsMasterClient)
+        //    photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
     }
-
-    //public void Attack()
-    //{
-    //    if (PhotonNetwork.IsMasterClient)
-    //        photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
-    //}
-    //
-    //public void Attack2()
-    //{
-    //    if (PhotonNetwork.IsMasterClient)
-    //        photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
-    //}
+    
+    public void Attack2()
+    {
+        if (entity.IsOwner)
+            state.DoAttack2();
+        //if (PhotonNetwork.IsMasterClient)
+        //    photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
+    }
 
     public void DoAttack()
     {
@@ -60,39 +59,39 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    if (collision.gameObject.tag == "Minion")
-        //    {
-        //        if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
-        //        {
-        //            TargetObject.Add(collision.gameObject);
-        //        }
-        //    }
-        //    else if (collision.gameObject.tag == "Player")
-        //    {
-        //        if (collision.gameObject != player.gameObject)
-        //            TargetObject.Add(collision.gameObject);
-        //    }
-        //}
+        if (entity.IsOwner)
+        {
+            if (collision.gameObject.tag == "Minion")
+            {
+                if (player.Mycreature.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
+                {
+                    TargetObject.Add(collision.gameObject);
+                }
+            }
+            else if (collision.gameObject.tag == "Player")
+            {
+                if (collision.gameObject != player.gameObject)
+                    TargetObject.Add(collision.gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    if (collision.gameObject.tag == "Minion")
-        //    {
-        //        if (player.RedTeam != collision.GetComponent<Creature>().RedTeam)
-        //        {
-        //            TargetObject.Remove(collision.gameObject);
-        //        }
-        //    }
-        //    else if (collision.gameObject.tag == "Player")
-        //    {
-        //        if (collision.gameObject != player.gameObject)
-        //            TargetObject.Remove(collision.gameObject);
-        //    }
-        //}
+        if (entity.IsOwner)
+        {
+            if (collision.gameObject.tag == "Minion")
+            {
+                if (player.Mycreature.RedTeam != collision.GetComponent<Creature>().RedTeam)
+                {
+                    TargetObject.Remove(collision.gameObject);
+                }
+            }
+            else if (collision.gameObject.tag == "Player")
+            {
+                if (collision.gameObject != player.gameObject)
+                    TargetObject.Remove(collision.gameObject);
+            }
+        }
     }
 }
