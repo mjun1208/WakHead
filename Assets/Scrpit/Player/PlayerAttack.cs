@@ -11,13 +11,13 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
     public override void Attached()
     {
         state.OnDoAttack = DoAttack;
-        state.OnDoAttack2 = DoAttack2;
+        state.OnDoSkill_2 = DoAttack2;
     }
 
     public void Attack()
     {
-        //if (entity.IsOwner)
-        //    state.DoAttack();
+        if (entity.IsOwner)
+            state.DoAttack();
         //if (PhotonNetwork.IsMasterClient)
         //    photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
     }
@@ -25,7 +25,7 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
     public void Attack2()
     {
         if (entity.IsOwner)
-            state.DoAttack2();
+            state.OnDoSkill_2();
         //if (PhotonNetwork.IsMasterClient)
         //    photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
     }
@@ -45,6 +45,8 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
                 power = 0.5f;
             else
                 power = -0.5f;
+
+            //tempCreatureScript.transform.position += new Vector3(10, 0, 0);
             tempCreatureScript.KnockBack(power);
         }
     }

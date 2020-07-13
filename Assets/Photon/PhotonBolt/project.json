@@ -228,7 +228,7 @@
           }
         },
         {
-          "Name": "DoAttack2",
+          "Name": "DoSkill_2",
           "Enabled": true,
           "ReplicationMode": 1,
           "Priority": 1,
@@ -244,9 +244,8 @@
           }
         },
         {
-          "Name": "DoGrab",
+          "Name": "DoSkill_1",
           "Enabled": true,
-          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -261,6 +260,7 @@
           }
         }
       ],
+      "ParentGuid": "7de8ee4f-124e-4bcc-9bb2-ea9c97ddfee8",
       "PacketMaxBits": 512,
       "PacketMaxProperties": 16,
       "InitialPositionCompression": {
@@ -338,7 +338,7 @@
       "$type": "Bolt.Compiler.StateDefinition, bolt.compiler",
       "Properties": [
         {
-          "Name": "DoGrab",
+          "Name": "Grab",
           "Enabled": true,
           "Expanded": true,
           "ReplicationMode": 1,
@@ -422,8 +422,71 @@
           "BitsRequired": 8
         }
       },
-      "Name": "CretureState",
-      "Guid": "9a5f3b05-3d96-4fec-87af-411bed6d5e76",
+      "Name": "CreatureState",
+      "Guid": "7de8ee4f-124e-4bcc-9bb2-ea9c97ddfee8",
+      "Groups": []
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Target",
+          "Enabled": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeVector, bolt.compiler",
+            "Selection": 14,
+            "Compression": [
+              {
+                "MinValue": -1024,
+                "MaxValue": 1024,
+                "Accuracy": 0.01,
+                "Pack": 100.0,
+                "Read": 0.01,
+                "Shift": 1024.0,
+                "BitsRequired": 18
+              },
+              {
+                "MinValue": -1024,
+                "MaxValue": 1024,
+                "Accuracy": 0.01,
+                "Pack": 100.0,
+                "Read": 0.01,
+                "Shift": 1024.0,
+                "BitsRequired": 18
+              },
+              {
+                "MinValue": -1024,
+                "MaxValue": 1024,
+                "Accuracy": 0.01,
+                "Pack": 100.0,
+                "Read": 0.01,
+                "Shift": 1024.0,
+                "BitsRequired": 18
+              }
+            ]
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        },
+        {
+          "Name": "CanMove",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeBool, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "Name": "ForcedMovementEvent",
+      "Guid": "8ae512f2-04eb-4592-9779-f5846c3380ea",
       "Groups": []
     }
   ],
