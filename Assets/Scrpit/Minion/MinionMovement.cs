@@ -94,7 +94,7 @@ public class MinionMovement : Creature
         {
             Vector3 Temp = new Vector3(TargetObject.transform.position.x - transform.position.x, TargetObject.transform.position.y - transform.position.y, 0);
             Temp = Vector3.Normalize(Temp);
-            transform.Translate(Temp * MoveSpeed * Time.deltaTime);
+            transform.Translate(Temp * MoveSpeed * BoltNetwork.FrameDeltaTime);
         }
     }
 

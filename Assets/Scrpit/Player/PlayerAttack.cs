@@ -11,23 +11,19 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
     public override void Attached()
     {
         state.OnDoAttack = DoAttack;
-        state.OnDoSkill_2 = DoAttack2;
+        state.OnDoSkill_2 = DoSkill_2;
     }
 
     public void Attack()
     {
         if (entity.IsOwner)
             state.DoAttack();
-        //if (PhotonNetwork.IsMasterClient)
-        //    photonView.RPC("DoAttack", RpcTarget.AllViaServer, null);
     }
     
     public void Attack2()
     {
         if (entity.IsOwner)
-            state.OnDoSkill_2();
-        //if (PhotonNetwork.IsMasterClient)
-        //    photonView.RPC("DoAttack2", RpcTarget.AllViaServer, null);
+            state.DoSkill_2();
     }
 
     public void DoAttack()
@@ -42,21 +38,18 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
             Dir.Normalize();
             float power;
             if (Dir.x > 0)
-                power = 0.5f;
+                power = 1.0f;
             else
-                power = -0.5f;
+                power = -1.0f;
 
             //tempCreatureScript.transform.position += new Vector3(10, 0, 0);
             tempCreatureScript.KnockBack(power);
         }
     }
 
-    public void DoAttack2()
+    public void DoSkill_2()
     {
         BulletAdmin.instance.SpawnBullet(player.transform.position, (int)player.transform.localScale.x, player);
-        //GameObject bul = Instantiate(Bullet, player.transform.position, Quaternion.identity);
-        //bul.GetComponent<Bullet>().direction = (int)player.transform.localScale.x;
-        //bul.GetComponent<Bullet>().player = player;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

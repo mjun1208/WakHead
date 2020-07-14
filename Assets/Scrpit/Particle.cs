@@ -14,7 +14,7 @@ public class Particle : MonoBehaviour
 
     private void Update()
     {
-        CurTime += Time.deltaTime;
+        CurTime += BoltNetwork.FrameDeltaTime;
 
         if (CurTime > LifeTime)
             this.gameObject.SetActive(false);

@@ -19,6 +19,6 @@ public class CameraManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (player != null)
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x, FollowSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, player.transform.position.x, FollowSpeed * BoltNetwork.FrameDeltaTime), transform.position.y, transform.position.z);
     }
 }

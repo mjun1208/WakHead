@@ -16,8 +16,6 @@ public class PlayerSkill_1 : Bolt.EntityBehaviour<IPlayerState>
     {
         if (entity.IsOwner)
             state.DoSkill_1();
-        //if (PhotonNetwork.IsMasterClient)
-        //    photonView.RPC("DoSkill_1", RpcTarget.AllViaServer, null);
     }
 
     public void DoSkill_1()
