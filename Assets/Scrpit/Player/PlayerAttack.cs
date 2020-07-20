@@ -43,7 +43,7 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
                 power = -1.0f;
 
             //tempCreatureScript.transform.position += new Vector3(10, 0, 0);
-            tempCreatureScript.KnockBack(power);
+            tempCreatureScript.KnockBack(power, false);
         }
     }
 

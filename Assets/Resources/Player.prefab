@@ -318,10 +318,11 @@ MonoBehaviour:
   animator: {fileID: 6642160487387641287}
   sprite: {fileID: 6642160487387641286}
   Life: 5
-  MoveSpeed: 2
+  MoveSpeed: 4
   TargetObject: {fileID: 0}
   RedTeam: 1
   CanMove: 1
+  Stun: 0
   IsDead: 0
 --- !u!114 &6642160487493563849
 MonoBehaviour:
@@ -341,6 +342,7 @@ MonoBehaviour:
   MaxYPos: 0
   Grapic: {fileID: 6642160487387641285}
   collider: {fileID: 6369809698047216561}
+  Skill_CanMove: 1
 --- !u!50 &6369809698047216573
 Rigidbody2D:
   serializedVersion: 4
