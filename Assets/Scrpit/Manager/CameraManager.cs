@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
 
     public GameObject player;
 
-    public float FollowSpeed = 1.2f;
+    public float FollowSpeed = 2.5f;
 
     // Start is called before the first frame update
     private void Awake()

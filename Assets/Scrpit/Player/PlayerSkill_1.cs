@@ -26,7 +26,7 @@ public class PlayerSkill_1 : Bolt.EntityBehaviour<IPlayerState>
 
             tempCreatureScript.OnDamage(1.0f);
             tempCreatureScript.CanMove = false;
-            tempCreatureScript.Grab(player.transform.position);
+            tempCreatureScript.Grab(player.transform.position , true);
             //if (TargetObject[i].tag != "Player")
             //tempCreatureScript.KnockBack(TargetObject[i].transform.position.x - player.transform.position.x);
         }

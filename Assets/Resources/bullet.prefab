@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8931185625124295181}
   - component: {fileID: 8931185625124295183}
   - component: {fileID: 8931185625124295182}
-  - component: {fileID: 1111849501807260712}
+  - component: {fileID: 1244490305861029131}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   direction: 0
---- !u!114 &1111849501807260712
+--- !u!114 &1244490305861029131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneGuid: 
-  _serializerGuid: 11a050c2-082e-4414-97a8-54e210faef5c
+  _serializerGuid: d42669a0-7c8c-4836-9ef7-574531ee3f24
   _prefabId: 1
   _updateRate: 1
   _autoFreezeProxyFrames: 0

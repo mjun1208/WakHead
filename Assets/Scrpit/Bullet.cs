@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Bolt;
-public class Bullet : Bolt.EntityEventListener<IBulletState>
+public class Bullet : Bolt.EntityBehaviour<IBulletState>
 {
     public PlayerMovement player;   
     public int direction = 0;
@@ -14,14 +14,13 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
     {
         state.SetTransforms(state.BulletTransform, transform);
         state.OnColl = Coll;
+        //if (player.entity.IsOwner)
 
-        //state.CollObject = CollObject;
     }
-
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * 12 * BoltNetwork.FrameDeltaTime, 0,0);
+        transform.Translate(direction * 12 * BoltNetwork.FrameDeltaTime, 0, 0);
         if (transform.position.x >= 50 || transform.position.x <= -50)
             this.gameObject.SetActive(false);
     }
@@ -39,7 +38,7 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
             power = 2f;
         else
             power = -2f;
-        tempCreatureScript.KnockBack(power);
+        tempCreatureScript.KnockBack(power, true);
 
 
         this.gameObject.SetActive(false);
@@ -47,13 +46,14 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (BoltNetwork.IsServer)
+        if (player.entity.IsOwner)
         {
             if (collision.gameObject.tag == "Minion")
             {
                 if (player.Mycreature.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
                 {
                     CollObject = collision.gameObject;
+                    //Coll();
                     state.Coll();
                 }
             }
@@ -62,6 +62,7 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
                 if (collision.gameObject != player.gameObject)
                 {
                     CollObject = collision.gameObject;
+                    //Coll();
                     state.Coll();
                 }
             }
