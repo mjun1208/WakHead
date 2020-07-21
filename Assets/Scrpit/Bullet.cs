@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Bolt;
-public class Bullet : Bolt.EntityBehaviour<IBulletState>
+using System.Diagnostics.Tracing;
+
+public class Bullet : GlobalEventListener
 {
     public PlayerMovement player;   
     public int direction = 0;
     // Start is called before the first frame update
     private GameObject CollObject = null;
 
-    public override void Attached()
-    {
-        state.SetTransforms(state.BulletTransform, transform);
-        state.OnColl = Coll;
-        //if (player.entity.IsOwner)
-
-    }
     // Update is called once per frame
     void Update()
     {
         transform.Translate(direction * 12 * BoltNetwork.FrameDeltaTime, 0, 0);
+
         if (transform.position.x >= 50 || transform.position.x <= -50)
-            this.gameObject.SetActive(false);
+        {
+            var objectSetActive = ObjectSetActive.Create(Bolt.GlobalTargets.Everyone);
+            objectSetActive.Send();
+        }
     }
 
     void Coll()
@@ -39,8 +38,13 @@ public class Bullet : Bolt.EntityBehaviour<IBulletState>
         else
             power = -2f;
         tempCreatureScript.KnockBack(power, true);
+        
+        var objectSetActive = ObjectSetActive.Create(Bolt.GlobalTargets.Everyone);
+        objectSetActive.Send();
+    }
 
-
+    public override void OnEvent(ObjectSetActive evnt)
+    {
         this.gameObject.SetActive(false);
     }
 
@@ -53,8 +57,7 @@ public class Bullet : Bolt.EntityBehaviour<IBulletState>
                 if (player.Mycreature.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
                 {
                     CollObject = collision.gameObject;
-                    //Coll();
-                    state.Coll();
+                    Coll();
                 }
             }
             else if (collision.gameObject.tag == "Player")
@@ -62,8 +65,7 @@ public class Bullet : Bolt.EntityBehaviour<IBulletState>
                 if (collision.gameObject != player.gameObject)
                 {
                     CollObject = collision.gameObject;
-                    //Coll();
-                    state.Coll();
+                    Coll();
                 }
             }
         }
