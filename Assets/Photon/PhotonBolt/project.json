@@ -585,7 +585,7 @@
             "SmoothingAlgorithm": 2,
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
-            "ExtrapolationMaxFrames": 9,
+            "ExtrapolationMaxFrames": 30,
             "SnapMagnitude": 10.0
           }
         },

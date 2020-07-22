@@ -83,7 +83,7 @@ public class Creature : Bolt.EntityEventListener<ICreatureState>
 
     public void DoForcedMovement()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, TargetPos, 10.0f * BoltNetwork.FrameDeltaTime);
+        this.transform.position = Vector3.Lerp(this.transform.position, TargetPos, 6.0f * BoltNetwork.FrameDeltaTime);
     }
 
     public void OnDamage(float damage)
