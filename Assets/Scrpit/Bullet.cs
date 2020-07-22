@@ -12,18 +12,22 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
 
     public override void Attached()
     {
-        state.SetTransforms(state.BulletTransform, transform);
+        //state.SetTransforms(state.BulletTransform, transform);
         state.OnColl = Coll;
 
         //state.CollObject = CollObject;
     }
 
+    public override void SimulateOwner()
+    {
+        if (transform.position.x >= 50 || transform.position.x <= -50)
+            this.gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * 12 * BoltNetwork.FrameDeltaTime, 0,0);
-        if (transform.position.x >= 50 || transform.position.x <= -50)
-            this.gameObject.SetActive(false);
+        transform.Translate(direction * 12 * BoltNetwork.FrameDeltaTime, 0, 0);
     }
 
     void Coll()
@@ -47,7 +51,7 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (BoltNetwork.IsServer)
+        if (entity.IsOwner)
         {
             if (collision.gameObject.tag == "Minion")
             {

@@ -40,12 +40,15 @@ public class BulletAdmin : MonoBehaviour
 
     public void SpawnBullet(Vector3 Pos ,int Dir, PlayerMovement player)
     {
-        Bullets[NowCount].transform.position = Pos;
-        Bullets[NowCount].SetActive(true);
-        Bullet_Script[NowCount].direction = Dir;
-        Bullet_Script[NowCount].player = player;
-
-        if (++NowCount >= Bullets.Count)
-            NowCount = 0;
+        GameObject temp = BoltNetwork.Instantiate(BoltPrefabs.bullet, Pos, Quaternion.identity);
+        temp.GetComponent<Bullet>().direction = Dir;
+        temp.GetComponent<Bullet>().player = player;
+        //Bullets[NowCount].transform.position = Pos;
+        //Bullets[NowCount].SetActive(true);
+        //Bullet_Script[NowCount].direction = Dir;
+        //Bullet_Script[NowCount].player = player;
+        //
+        //if (++NowCount >= Bullets.Count)
+        //    NowCount = 0;
     }
 }

@@ -23,7 +23,8 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
     public void Attack2()
     {
         if (entity.IsOwner)
-            state.DoSkill_2();
+            DoSkill_2();
+                //state.DoSkill_2();
     }
 
     public void DoAttack()
