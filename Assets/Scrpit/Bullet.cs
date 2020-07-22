@@ -39,7 +39,7 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
             power = 2f;
         else
             power = -2f;
-        tempCreatureScript.KnockBack(power);
+        tempCreatureScript.KnockBack(power, true);
 
 
         this.gameObject.SetActive(false);

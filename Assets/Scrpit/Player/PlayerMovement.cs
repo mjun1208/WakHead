@@ -25,6 +25,8 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
     private int OldReSpawnTime = 0;
 
     public Collider2D collider;
+     
+    private bool Skill_CanMove = true;
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
@@ -63,11 +65,13 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         if (entity.IsOwner)
         {
             state.LocalScale = this.transform.localScale;
-            state.CanMove = Mycreature.CanMove;
+            //state.CanMove = Mycreature.CanMove;
+            //state.Stun = Mycreature.Stun;
         }
 
         state.AddCallback("LocalScale", ScaleChange);
-        state.AddCallback("CanMove", CanMoveChange);
+        //state.AddCallback("CanMove", CanMoveChange);
+        //state.AddCallback("Stun", StunChange);
         //state.Animator.applyRootMotion = entity.IsOwner;
     }
     
@@ -76,10 +80,15 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         transform.localScale = state.LocalScale;
     }
 
-    void CanMoveChange()
-    {
-        Mycreature.CanMove = state.CanMove;
-    }
+    //void CanMoveChange()
+    //{
+    //    Mycreature.CanMove = state.CanMove;
+    //}
+
+    //void StunChange()
+    //{
+    //    Mycreature.Stun = state.Stun;
+    //}
 
     public override void SimulateOwner()
     {
@@ -126,20 +135,29 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         if (Mycreature.animator.GetBool("Skill_1") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
             Mycreature.animator.SetBool("Skill_1", false);
-            Mycreature.CanMove = true;
+            Skill_CanMove = true;
         }
 
         if (Mycreature.animator.GetBool("Skill_2") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
             Mycreature.animator.SetBool("Skill_2", false);
-            Mycreature.CanMove = true;
+            Skill_CanMove = true;
         }
 
-        if (Mycreature.CanMove)
+        if (Mycreature.CanMove && Skill_CanMove && !Mycreature.Stun)
         {
             Move_Input();
             Skill_1();
             Skill_2();
+        }
+        else if (Mycreature.Stun)
+        {
+            Skill_CanMove = true;
+
+            Mycreature.animator.SetBool("Attack", false);
+            Mycreature.animator.SetBool("Skill_1", false);
+            Mycreature.animator.SetBool("Skill_2", false);
+            CurrentSpeed = Mycreature.MoveSpeed;
         }
     }
 
@@ -208,7 +226,7 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Mycreature.CanMove = false;
+            Skill_CanMove = false;
             Mycreature.animator.SetBool("Skill_1", true);
         }
     }
@@ -217,7 +235,7 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Mycreature.CanMove = false;
+            Skill_CanMove = false;
             Mycreature.animator.SetBool("Skill_2", true);
         }
     }

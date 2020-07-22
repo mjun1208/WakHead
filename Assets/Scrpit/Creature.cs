@@ -18,42 +18,53 @@ public class Creature : Bolt.EntityEventListener<ICreatureState>
     public bool CanMove = true;
     public bool IsDead = false;
 
+    public bool Stun = false;
+
     Vector3 TargetPos;
+
+    IEnumerator MoveCoroutine;
+
+
     public override void Attached()
     {
     }
 
-    public void KnockBack(float power)
+    public void KnockBack(float power, bool stun)
     {
-        CanMove = false;
-
         Vector3 Target = this.transform.position + new Vector3(power, 0, 0);
         TargetPos = Target;
 
         var forcedmovement = ForcedMovementEvent.Create(entity);
         forcedmovement.Target = TargetPos;
-        forcedmovement.CanMove = CanMove;
+        forcedmovement.Stun = stun;
         forcedmovement.Send();
     }
 
-    public void Grab(Vector3 target)
+    public void Grab(Vector3 target, bool stun)
     {
-        CanMove = false;
-
         TargetPos = target;
 
         var forcedmovement = ForcedMovementEvent.Create(entity);
         forcedmovement.Target = TargetPos;
-        forcedmovement.CanMove = CanMove;
+        forcedmovement.Stun = stun;
         forcedmovement.Send();
     }
 
     public override void OnEvent(ForcedMovementEvent evnt)
     {
         TargetPos = evnt.Target;
-        CanMove = evnt.CanMove;
 
-        StartCoroutine(ForcedMovement(TargetPos));
+        if (entity.IsOwner)
+        {
+            Stun = evnt.Stun;
+            CanMove = false;
+            if (MoveCoroutine != null)
+                StopCoroutine(MoveCoroutine);
+            MoveCoroutine = null;
+
+            MoveCoroutine = ForcedMovement(TargetPos);
+            StartCoroutine(MoveCoroutine);
+        }
     }
 
     public IEnumerator ForcedMovement(Vector3 Target)
@@ -65,6 +76,7 @@ public class Creature : Bolt.EntityEventListener<ICreatureState>
             yield return null;
         }
 
+        Stun = false;
         CanMove = true;
         yield return null;
     }

@@ -318,11 +318,12 @@ MonoBehaviour:
   animator: {fileID: 6642160487387641287}
   sprite: {fileID: 6642160487387641286}
   Life: 5
-  MoveSpeed: 2
+  MoveSpeed: 4
   TargetObject: {fileID: 0}
   RedTeam: 1
   CanMove: 1
   IsDead: 0
+  Stun: 0
 --- !u!114 &6642160487493563849
 MonoBehaviour:
   m_ObjectHideFlags: 0
