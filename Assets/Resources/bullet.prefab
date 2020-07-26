@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8931185625124295182}
   - component: {fileID: 1111849501807260712}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   direction: 0
+  renderer: {fileID: 8931185625124295181}
 --- !u!114 &1111849501807260712
 MonoBehaviour:
   m_ObjectHideFlags: 0

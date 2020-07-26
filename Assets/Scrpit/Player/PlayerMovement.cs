@@ -56,10 +56,17 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
 
     public override void Attached()
     {
+        if (BoltNetwork.IsServer)
+            Mycreature.RedTeam = true;
+        else
+            Mycreature.RedTeam = false;
+
+        state.RedTeam = Mycreature.RedTeam;
+
         if (entity.IsOwner)
             CameraManager.instance.player = this.gameObject;
 
-        state.SetTransforms(state.PlayerTransform, transform);
+        state.SetTransforms(state.CreatureTransform, transform);
         state.SetAnimator(Mycreature.animator);
 
         if (entity.IsOwner)
@@ -70,14 +77,20 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         }
 
         state.AddCallback("LocalScale", ScaleChange);
+        state.AddCallback("RedTeam", RedTeamChange);
         //state.AddCallback("CanMove", CanMoveChange);
         //state.AddCallback("Stun", StunChange);
-        //state.Animator.applyRootMotion = entity.IsOwner;
+        state.Animator.applyRootMotion = entity.IsOwner;
     }
     
     void ScaleChange()
     {
         transform.localScale = state.LocalScale;
+    }
+
+    void RedTeamChange()
+    {
+        Mycreature.RedTeam = state.RedTeam;
     }
 
     //void CanMoveChange()

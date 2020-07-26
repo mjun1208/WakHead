@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //시간없으니까 공격을 일케하는데 나중에 바꿨으면 함
-public class MinionAttack : MonoBehaviour
+public class MinionAttack : Bolt.EntityEventListener<IMinionState>
 {
-    MinionMovement minion;
+    public MinionMovement minionMovement;
     void Start()
     {
-        minion = gameObject.transform.parent.GetComponent<MinionMovement>();
+        //minion = gameObject.transform.parent.GetComponent<MinionMovement>();
     }
 
     void Update()
@@ -20,8 +20,8 @@ public class MinionAttack : MonoBehaviour
     {
         //if (PhotonNetwork.IsMasterClient)
         //{
-        //    minion.TargetObject.GetComponent<TowerSystem>().OnDamage(1f);
-        //    minion.TargetObject.GetComponent<TowerSystem>().Hit();
+        //    minionMovement.TargetObject.GetComponent<TowerSystem>().OnDamage(1f);
+        //    minionMovement.TargetObject.GetComponent<TowerSystem>().Hit();
         //}
     }
 }

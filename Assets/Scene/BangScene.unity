@@ -1155,6 +1155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minions: []
   Minion_Script: []
+  Tower_Red: {fileID: 1454911382}
+  Tower_Blue: {fileID: 2305061805251763766}
 --- !u!1001 &229774377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4957,7 +4959,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2305061805251763764}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2305061805251763766}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 894679cfda47ca645ae982b3c9478216, type: 3}
@@ -8080,6 +8082,12 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 1454911380}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1454911382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2305061804627710740, guid: 9706d08545b9c0a47a67124d1090f3de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454911380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1463933828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8361,6 +8369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullets: []
   Bullet_Script: []
+  BulletGrapic: {fileID: 8931185625124295178, guid: fbb235bc3a7b30f40918870bfad5198b,
+    type: 3}
 --- !u!4 &1538552156
 Transform:
   m_ObjectHideFlags: 0
@@ -9988,7 +9998,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1454911380}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1454911382}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 894679cfda47ca645ae982b3c9478216, type: 3}
@@ -11030,6 +11040,12 @@ PrefabInstance:
 --- !u!212 &2305061805251763765 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 357009566033222091, guid: 9706d08545b9c0a47a67124d1090f3de,
+    type: 3}
+  m_PrefabInstance: {fileID: 2305061805251763764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2305061805251763766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2305061804627710740, guid: 9706d08545b9c0a47a67124d1090f3de,
     type: 3}
   m_PrefabInstance: {fileID: 2305061805251763764}
   m_PrefabAsset: {fileID: 0}

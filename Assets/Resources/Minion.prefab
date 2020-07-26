@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ea6f6e3683d6249b1b724b65b65174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minionMovement: {fileID: 1664431669145434881}
 --- !u!1 &1664431669145434884
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,9 +125,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664431669145434885}
+  - component: {fileID: 3274228275954026615}
   - component: {fileID: 1664431669145434881}
   - component: {fileID: 1664431669145434882}
   - component: {fileID: 1664431669145434883}
+  - component: {fileID: 3792677173320493794}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Minion
@@ -149,6 +152,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3274228275954026615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664431669145434884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c492f2f95c3f4e4ba80e504f9adfc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1664431669031123724}
+  sprite: {fileID: 1664431669031123725}
+  Life: 4
+  MoveSpeed: 1
+  TargetObject: {fileID: 0}
+  RedTeam: 1
+  CanMove: 1
+  IsDead: 0
+  Stun: 0
 --- !u!114 &1664431669145434881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,13 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26203529e1ca014d846de7c4b2b9999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 3
-  MoveSpeed: 1
-  TargetObject: {fileID: 0}
-  RedTeam: 1
-  CanMove: 1
-  IsDead: 0
   isAttack: 0
+  Mycreature: {fileID: 3274228275954026615}
 --- !u!61 &1664431669145434882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215,3 +234,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3792677173320493794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664431669145434884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneGuid: 
+  _serializerGuid: c1e805a5-f7fc-4111-a545-c3b4175a8077
+  _prefabId: 2
+  _updateRate: 1
+  _autoFreezeProxyFrames: 0
+  _clientPredicted: 1
+  _allowInstantiateOnClient: 1
+  _persistThroughSceneLoads: 0
+  _sceneObjectDestroyOnDetach: 1
+  _sceneObjectAutoAttach: 1
+  _alwaysProxy: 0
+  _detachOnDisable: 1
+  _allowFirstReplicationWhenFrozen: 0
+  _autoRemoveChildEntities: 0
+  _entityBehaviourQueryOption: 0
+  _entityPriorityCalculatorQueryOption: 0
+  _entityReplicationFilterQueryOption: 0

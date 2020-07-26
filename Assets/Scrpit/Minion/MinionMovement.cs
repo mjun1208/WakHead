@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionMovement : Creature
+public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 {
     public bool isAttack = false;
-
+    public Creature Mycreature;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -28,46 +28,68 @@ public class MinionMovement : Creature
     //    }
     //}
 
-    private void Awake()
+    public override void Attached()
     {
+        state.SetTransforms(state.CreatureTransform, transform);
+
+        if (entity.IsOwner)
+        {
+            //state.LocalScale = this.transform.localScale;
+            //state.RedTeam = Mycreature.RedTeam;
+        }
+
+        state.AddCallback("LocalScale", ScaleChange);
+        state.AddCallback("RedTeam", RedTeamChange);
     }
-    void Start()
+
+    void ScaleChange()
     {
-        animator = transform.GetChild(0).GetComponent<Animator>();
+        transform.localScale = state.LocalScale;
+    }
+
+    void RedTeamChange()
+    {
+        Mycreature.RedTeam = state.RedTeam;
     }
 
     void Update()
     {
-        ChangeTeam();
-        Dead();
+         ChangeTeam();
+         Dead();
 
-        //if (!PhotonNetwork.IsMasterClient)
-        //    return;
+         if (!BoltNetwork.IsServer)
+            return;
 
-        if (CanMove)
-        {
-            Attack();
-            Move();
-        }
+         if (Mycreature.CanMove && !Mycreature.Stun)
+         {
+             Attack();
+             Move();
+         }
+         else if (Mycreature.Stun)
+         {
+             isAttack = false;
+             Mycreature.animator.SetBool("Attack", false);
+         }
     }
 
     void ChangeTeam()
     {
-        if (RedTeam)
+        Mycreature.RedTeam = state.RedTeam;
+        if (Mycreature.RedTeam)
         {
             this.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-            sprite.color = new Color(1, 0, 0, 1);
+            Mycreature.sprite.color = new Color(1, 0, 0, 1);
         }
         else
         {
             this.transform.localScale = new Vector3(-1.2f, 1.2f, 1.2f);
-            sprite.color = new Color(0, 0, 1, 1);
+            Mycreature.sprite.color = new Color(0, 0, 1, 1);
         }
     }
 
     void Dead()
     {
-        if (Life <= 0)
+        if (Mycreature.Life <= 0)
         {
             ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
             this.gameObject.SetActive(false);//원래는 죽는 아니메로 이동
@@ -75,26 +97,25 @@ public class MinionMovement : Creature
     }
     void Attack()
     {
-        if (Vector3.Distance(TargetObject.transform.position, transform.position) <= 1.5f)
+        if (Vector3.Distance(Mycreature.TargetObject.transform.position, transform.position) <= 1.5f)
         {
             isAttack = true;
-            animator.SetBool("Attack", true);
+            Mycreature.animator.SetBool("Attack", true);
         }
         else
         {
             isAttack = false;
-            animator.SetBool("Attack", false);
+            Mycreature.animator.SetBool("Attack", false);
         }
     }
 
     void Move()
     {
-
         if (!isAttack)
         {
-            Vector3 Temp = new Vector3(TargetObject.transform.position.x - transform.position.x, TargetObject.transform.position.y - transform.position.y, 0);
+            Vector3 Temp = new Vector3(Mycreature.TargetObject.transform.position.x - transform.position.x, Mycreature.TargetObject.transform.position.y - transform.position.y, 0);
             Temp = Vector3.Normalize(Temp);
-            transform.Translate(Temp * MoveSpeed * BoltNetwork.FrameDeltaTime);
+            transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
         }
     }
 

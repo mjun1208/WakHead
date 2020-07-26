@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
+using Bolt;
+
+public class PlayerAttack : Bolt.EntityEventListener<IPlayerState>
 {
     public PlayerMovement player;
     public GameObject Bullet;
@@ -22,9 +24,17 @@ public class PlayerAttack : Bolt.EntityBehaviour<IPlayerState>
     
     public void Attack2()
     {
-        if (entity.IsOwner)
-            DoSkill_2();
-                //state.DoSkill_2();
+        if (BoltNetwork.IsServer)
+        {
+            var shoot = ShootEvent.Create(entity);
+            shoot.Send();
+        }
+        //DoSkill_2();
+    }
+
+    public override void OnEvent(ShootEvent evnt)
+    {
+        DoSkill_2();
     }
 
     public void DoAttack()
