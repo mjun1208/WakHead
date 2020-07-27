@@ -28,6 +28,8 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
      
     private bool Skill_CanMove = true;
 
+    public SpriteRenderer PlayerArrow;
+
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -56,13 +58,6 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
 
     public override void Attached()
     {
-        if (BoltNetwork.IsServer)
-            Mycreature.RedTeam = true;
-        else
-            Mycreature.RedTeam = false;
-
-        state.RedTeam = Mycreature.RedTeam;
-
         if (entity.IsOwner)
             CameraManager.instance.player = this.gameObject;
 
@@ -71,7 +66,16 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
 
         if (entity.IsOwner)
         {
+            if (BoltNetwork.IsServer)
+            {
+                Mycreature.RedTeam = true;
+            }
+            else
+            {
+                Mycreature.RedTeam = false;
+            }
             state.LocalScale = this.transform.localScale;
+            state.RedTeam = Mycreature.RedTeam;
             //state.CanMove = Mycreature.CanMove;
             //state.Stun = Mycreature.Stun;
         }
@@ -177,12 +181,12 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
     // Start is called before the first frame update
     void Start()
     {
-        //if (PhotonNetwork.IsMasterClient)
-        //    RedTeam = true;
-        //else
-        //    RedTeam = false;
+        //Mycreature.animator = transform.GetChild(0).GetComponent<Animator>();
+        if (state.RedTeam)
+            PlayerArrow.color = new Color(1, 0, 0, 1);
+        else
+            PlayerArrow.color = new Color(0, 0, 1, 1);
 
-        Mycreature.animator = transform.GetChild(0).GetComponent<Animator>();
         CurPos = this.transform.position;
         OldPos = CurPos;
 

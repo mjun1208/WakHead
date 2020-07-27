@@ -34,8 +34,8 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 
         if (entity.IsOwner)
         {
-            //state.LocalScale = this.transform.localScale;
-            //state.RedTeam = Mycreature.RedTeam;
+            state.LocalScale = this.transform.localScale;
+            state.RedTeam = Mycreature.RedTeam;
         }
 
         state.AddCallback("LocalScale", ScaleChange);
@@ -74,8 +74,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 
     void ChangeTeam()
     {
-        Mycreature.RedTeam = state.RedTeam;
-        if (Mycreature.RedTeam)
+        if (state.RedTeam)
         {
             this.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             Mycreature.sprite.color = new Color(1, 0, 0, 1);

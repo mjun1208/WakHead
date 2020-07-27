@@ -55,19 +55,19 @@ public class MinionAdmin : Bolt.GlobalEventListener
         {
             var minionSpawn = SpawnMinionEvent.Create();
             minionSpawn.Send();
-            //StartCoroutine(MinionSpawn(4));
-            SpawnDelay = -9999999999;
+
+            SpawnDelay = 0;
         }
     }
 
     public override void OnEvent(SpawnMinionEvent evnt)
     {
-        StartCoroutine(MinionSpawn(1));
+        StartCoroutine(MinionSpawn(4));
     }
 
     IEnumerator MinionSpawn(int SpawnCount)
     {
-        //SpawnMinion(Tower_Blue, new Vector3(Tower_Red.transform.position.x, Tower_Red.transform.position.y + Random.Range(-0.5f, 1f), 0), true);
+        SpawnMinion(Tower_Blue, new Vector3(Tower_Red.transform.position.x, Tower_Red.transform.position.y + Random.Range(-0.5f, 1f), 0), true);
         SpawnMinion(Tower_Red, new Vector3(Tower_Blue.transform.position.x, Tower_Blue.transform.position.y + Random.Range(-0.5f, 1f), 0), false);
         //if (RedTeam)
         //    Minion.SpawnMinion(GameObject.Find("Tower2"), new Vector3(transform.position.x, transform.position.y + Random.Range(-0.5f, 1f), 0), RedTeam);
@@ -95,7 +95,7 @@ public class MinionAdmin : Bolt.GlobalEventListener
         GameObject temp = BoltNetwork.Instantiate(BoltPrefabs.Minion, Pos, Quaternion.identity);
         temp.GetComponent<MinionMovement>().Mycreature.Life = 4;
         temp.GetComponent<MinionMovement>().Mycreature.TargetObject = Target;
-        temp.GetComponent<MinionMovement>().Mycreature.RedTeam = IsRed;
+        temp.GetComponent<MinionMovement>().state.RedTeam = IsRed;
     }
 
     public void GetEnemy()

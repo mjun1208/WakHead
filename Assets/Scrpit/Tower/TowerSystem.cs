@@ -16,7 +16,6 @@ public class TowerSystem : Bolt.GlobalEventListener
     public TowerBulletAdmin Bullet;
     public MinionAdmin Minion;
 
-    float SpawnDelay = 15;
     float ShootDelay = 2;
 
     public Animator anime;

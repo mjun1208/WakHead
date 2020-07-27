@@ -17,7 +17,7 @@ public class BulletGrapic : MonoBehaviour
         if (collision.gameObject.tag == "Minion")
         {
             //Debug.Log("aaa p : " + player.Mycreature.RedTeam + "/ c : " + collision.GetComponent<Creature>().RedTeam);
-            if (player.Mycreature.RedTeam != collision.GetComponent<Creature>().RedTeam)//상대팀인지 식별
+            if (player.state.RedTeam != collision.GetComponent<Creature>().state.RedTeam)//상대팀인지 식별
             {
                 Destroy(this.gameObject);
                 //this.gameObject.SetActive(false);
