@@ -81,9 +81,10 @@
     <Compile Include="Assets\Scrpit\Player\PlayerAttack.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scrpit\Player\PlayerSkill_1.cs" />
+    <Compile Include="Assets\Scrpit\PrefabPool.cs" />
     <Compile Include="Assets\Scrpit\Title.cs" />
-    <Compile Include="Assets\Scrpit\Tower\BulletMovement.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerBulletAdmin.cs" />
+    <Compile Include="Assets\Scrpit\Tower\TowerBulletMovement.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerRange.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerSystem.cs" />
     <Compile Include="Assets\Scrpit\Tower\TowerUI.cs" />

@@ -91,7 +91,8 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
         if (Mycreature.Life <= 0)
         {
             ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
-            this.gameObject.SetActive(false);//원래는 죽는 아니메로 이동
+            BoltNetwork.Destroy(this.gameObject);
+            //this.gameObject.SetActive(false);//원래는 죽는 아니메로 이동
         }
     }
     void Attack()

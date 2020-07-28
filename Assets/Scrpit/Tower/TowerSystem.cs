@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerSystem : Bolt.GlobalEventListener
+public class TowerSystem : Bolt.EntityEventListener
 {
     public GameObject TargetObject;
     public bool RedTeam = true;
@@ -58,10 +58,15 @@ public class TowerSystem : Bolt.GlobalEventListener
         {
             if (ShootDelay > 2.0f)
             {
-                Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + 6, 0), RedTeam);
+                var towerBulletShoot = ShootTowerBulletEvent.Create(entity);
+                towerBulletShoot.Send();
                 ShootDelay = 0;
             }
         }
+    }
+    public override void OnEvent(ShootTowerBulletEvent evnt)
+    {
+        Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + 6, 0), RedTeam);
     }
 
 
