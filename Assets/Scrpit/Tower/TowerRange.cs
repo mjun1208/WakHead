@@ -22,7 +22,7 @@ public class TowerRange : MonoBehaviour
     {
         if (collision.tag == "Player" || collision.tag == "Minion")
         {
-        if ((towersystem.RedTeam && !collision.GetComponent<Creature>().RedTeam)||(!towersystem.RedTeam && collision.GetComponent<Creature>().RedTeam))//상대팀일때
+            if (towersystem.TargetObject == null && towersystem.RedTeam != collision.GetComponent<Creature>().state.RedTeam) //상대팀일때
             {
                 towersystem.isAttack = true;
                 towersystem.TargetObject = collision.gameObject;
@@ -32,7 +32,10 @@ public class TowerRange : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        towersystem.isAttack = false;
-        towersystem.TargetObject = null;
+        if (collision.gameObject == towersystem.TargetObject)
+        {
+            towersystem.isAttack = false;
+            towersystem.TargetObject = null;
+        }
     }
 }

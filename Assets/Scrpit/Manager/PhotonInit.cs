@@ -10,6 +10,12 @@ using UdpKit;
 
 public class PhotonInit : GlobalEventListener
 {
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+
     public void ClickServerStart()
     {
         BoltLauncher.StartServer();

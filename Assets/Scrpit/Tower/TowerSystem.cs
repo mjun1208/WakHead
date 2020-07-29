@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerSystem : Bolt.EntityEventListener
+public class TowerSystem : Bolt.GlobalEventListener
 {
     public GameObject TargetObject;
     public bool RedTeam = true;
@@ -31,6 +31,10 @@ public class TowerSystem : Bolt.EntityEventListener
     {
         Hp();
         ChangeTeam();
+
+        if (!BoltNetwork.IsServer)
+            return;
+        Attack();
     }
 
     void ChangeTeam()
@@ -53,19 +57,25 @@ public class TowerSystem : Bolt.EntityEventListener
 
     public void Attack()
     {
-        ShootDelay += BoltNetwork.FrameDeltaTime;
         if (isAttack)
         {
+            ShootDelay += BoltNetwork.FrameDeltaTime;
             if (ShootDelay > 2.0f)
             {
-                var towerBulletShoot = ShootTowerBulletEvent.Create(entity);
+                var towerBulletShoot = ShootTowerBulletEvent.Create(Bolt.GlobalTargets.OnlySelf);
+                towerBulletShoot.RedTeam = RedTeam;
                 towerBulletShoot.Send();
                 ShootDelay = 0;
             }
         }
+        else
+            ShootDelay = 0;
     }
     public override void OnEvent(ShootTowerBulletEvent evnt)
     {
+        if (evnt.RedTeam != RedTeam)
+            return;
+
         Bullet.SpawnBullet(TargetObject, new Vector3(transform.position.x, transform.position.y + 6, 0), RedTeam);
     }
 

@@ -63,7 +63,7 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
             power = -2f;
         tempCreatureScript.KnockBack(power, true);
 
-        Destroy(this.gameObject);
+        BoltNetwork.Destroy(this.gameObject);
         //this.gameObject.SetActive(false);
     }
 

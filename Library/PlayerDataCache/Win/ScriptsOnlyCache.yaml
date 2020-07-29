@@ -5,7 +5,6 @@ ScriptsOnlyBuild:
     - Bullet
     - BulletAdmin
     - BulletGrapic
-    - BulletMovement
     - CameraManager
     - Creature
     - MinionAdmin
@@ -20,6 +19,7 @@ ScriptsOnlyBuild:
     - PlayerSkill_1
     - Title
     - TowerBulletAdmin
+    - TowerBulletMovement
     - TowerRange
     - TowerSystem
     - TowerUI
@@ -78,8 +78,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
     - Class: 58
       Script: {instanceID: 0}
     - Class: 61
@@ -92,62 +90,48 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
-    - Class: 96
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11438}
+      Script: {instanceID: 11244}
     - Class: 114
-      Script: {instanceID: 11504}
+      Script: {instanceID: 11314}
     - Class: 114
-      Script: {instanceID: 11622}
+      Script: {instanceID: 11432}
     - Class: 114
-      Script: {instanceID: 11640}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11664}
+      Script: {instanceID: 11474}
     - Class: 114
-      Script: {instanceID: 11674}
+      Script: {instanceID: 11486}
     - Class: 114
-      Script: {instanceID: 11724}
+      Script: {instanceID: 11942}
     - Class: 114
-      Script: {instanceID: 12048}
+      Script: {instanceID: 11962}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12040}
     - Class: 114
-      Script: {instanceID: 12144}
+      Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12222}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12308}
+      Script: {instanceID: 12378}
     - Class: 114
-      Script: {instanceID: 12542}
+      Script: {instanceID: 12608}
     - Class: 114
-      Script: {instanceID: 12558}
+      Script: {instanceID: 12966}
     - Class: 114
-      Script: {instanceID: 12784}
+      Script: {instanceID: 13232}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 13304}
     - Class: 114
-      Script: {instanceID: 13132}
+      Script: {instanceID: 13374}
     - Class: 114
-      Script: {instanceID: 13394}
+      Script: {instanceID: 13414}
     - Class: 114
-      Script: {instanceID: 13422}
+      Script: {instanceID: 13434}
     - Class: 114
-      Script: {instanceID: 13464}
-    - Class: 114
-      Script: {instanceID: 13522}
-    - Class: 114
-      Script: {instanceID: 13534}
-    - Class: 114
-      Script: {instanceID: 13556}
-    - Class: 114
-      Script: {instanceID: 13572}
-    - Class: 114
-      Script: {instanceID: 13592}
-    - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 13454}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -208,65 +192,65 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11438}
+      Script: {instanceID: 11244}
     - Class: 114
-      Script: {instanceID: 11504}
+      Script: {instanceID: 11314}
     - Class: 114
-      Script: {instanceID: 11622}
+      Script: {instanceID: 11432}
     - Class: 114
-      Script: {instanceID: 11640}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11664}
+      Script: {instanceID: 11474}
     - Class: 114
-      Script: {instanceID: 11678}
+      Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11724}
+      Script: {instanceID: 11538}
     - Class: 114
-      Script: {instanceID: 11840}
+      Script: {instanceID: 11656}
     - Class: 114
-      Script: {instanceID: 12048}
+      Script: {instanceID: 11866}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 11942}
     - Class: 114
-      Script: {instanceID: 12150}
+      Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12308}
+      Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12558}
+      Script: {instanceID: 12378}
     - Class: 114
-      Script: {instanceID: 12578}
+      Script: {instanceID: 12398}
     - Class: 114
-      Script: {instanceID: 12804}
+      Script: {instanceID: 12628}
     - Class: 114
-      Script: {instanceID: 12818}
+      Script: {instanceID: 12642}
     - Class: 114
-      Script: {instanceID: 12826}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 12816}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 12824}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 12900}
     - Class: 114
-      Script: {instanceID: 13132}
+      Script: {instanceID: 12966}
     - Class: 114
-      Script: {instanceID: 13190}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13142}
     - Class: 114
-      Script: {instanceID: 13422}
+      Script: {instanceID: 13260}
     - Class: 114
-      Script: {instanceID: 13506}
+      Script: {instanceID: 13346}
     - Class: 114
-      Script: {instanceID: 13522}
+      Script: {instanceID: 13362}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 13374}
     - Class: 114
-      Script: {instanceID: 13556}
+      Script: {instanceID: 13396}
     - Class: 114
-      Script: {instanceID: 13592}
+      Script: {instanceID: 13434}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -937,7 +921,7 @@ ScriptsOnlyBuild:
       Hash: 1684d59a50435d38a25edff2e21cf7ab
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BulletMovement
+    className: TowerBulletMovement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -964,7 +948,7 @@ ScriptsOnlyBuild:
     className: TowerSystem
   - hash:
       serializedVersion: 2
-      Hash: 6b456cee4d6b5e28343f43368a76d5d0
+      Hash: 627c137691f1e52269b4b4b681edbd8b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TowerBulletAdmin

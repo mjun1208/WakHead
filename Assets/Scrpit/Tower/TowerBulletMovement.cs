@@ -7,6 +7,13 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
     public bool RedTeam = true;
     public SpriteRenderer renderer;
 
+    public Sprite RedBullet;
+    public Sprite BlueBullet;
+
+    public TrailRenderer trail;
+
+    public Material Redmaterial;
+    public Material Bluematerial;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -15,32 +22,35 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
     //        RedTeam = (bool)stream.ReceiveNext();
     //}
 
-    private void Awake()
+    public override void Attached()
     {
-        renderer = this.GetComponent<SpriteRenderer>();
-    }
-    void Start()
-    {
+        state.SetTransforms(state.TowerBulletTransform ,this.transform);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        if (RedTeam)
+        if (state.RedTeam)
         {
-            renderer.color = new Color(1, 0, 0, 1);
+            renderer.sprite = RedBullet;
+            trail.material = Redmaterial;
         }
         else
         {
-            renderer.color = new Color(0, 0, 1, 1);
+            renderer.sprite = BlueBullet;
+            trail.material = Bluematerial;
         }
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (!BoltNetwork.IsServer)
+            return;
+
         if (TargetObject == null)
         {
-            this.gameObject.SetActive(false);
+            BoltNetwork.Destroy(this.gameObject);
         }
 
         Vector3 Temp = new Vector3(TargetObject.transform.position.x - transform.position.x, TargetObject.transform.position.y - transform.position.y, 0);
@@ -54,8 +64,8 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
         {
             if (collision.tag == "Minion" || collision.tag == "Player")
             {
-                collision.gameObject.GetComponent<Creature>().Life -= 2.6f;
-                this.gameObject.SetActive(false);
+                //collision.gameObject.GetComponent<Creature>().Life -= 2.6f;
+                BoltNetwork.Destroy(this.gameObject);
             }
 
         }

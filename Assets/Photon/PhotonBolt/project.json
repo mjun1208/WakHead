@@ -924,6 +924,7 @@
           },
           "AssetSettings": {
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
+            "SmoothingAlgorithm": 1,
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
@@ -1021,7 +1022,21 @@
     },
     {
       "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
-      "Properties": [],
+      "Properties": [
+        {
+          "Name": "RedTeam",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeBool, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
       "Name": "ShootTowerBulletEvent",
       "Guid": "a42e99b6-825b-4f29-bbb7-de5bc6ec7884",
       "Groups": []
