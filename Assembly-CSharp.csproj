@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scrpit\Minion\MinionAdmin.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionAttack.cs" />
     <Compile Include="Assets\Scrpit\Minion\MinionMovement.cs" />
+    <Compile Include="Assets\Scrpit\Minion\MinionTargetFindRange.cs" />
     <Compile Include="Assets\Scrpit\NetworkManager.cs" />
     <Compile Include="Assets\Scrpit\Particle.cs" />
     <Compile Include="Assets\Scrpit\ParticleAdmin.cs" />

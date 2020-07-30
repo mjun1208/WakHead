@@ -6,6 +6,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 {
     public bool isAttack = false;
     public Creature Mycreature;
+    public Rigidbody2D rigid;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -115,16 +116,12 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
         {
             Vector3 Temp = new Vector3(Mycreature.TargetObject.transform.position.x - transform.position.x, Mycreature.TargetObject.transform.position.y - transform.position.y, 0);
             Temp = Vector3.Normalize(Temp);
+            //rigid.MovePosition(this.transform.position + (Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime));
             transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.tag == "Bullet")
-        //{
-        //    Life -= 1f;
-        //    Destroy(collision.gameObject);
-        //}
     }
 }
