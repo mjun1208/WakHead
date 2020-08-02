@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - MinionAdmin
     - MinionAttack
     - MinionMovement
+    - MinionTargetFindRange
     - NetworkManager
     - Particle
     - ParticleAdmin
@@ -113,25 +114,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12362}
+      Script: {instanceID: 12364}
     - Class: 114
-      Script: {instanceID: 12378}
+      Script: {instanceID: 12380}
     - Class: 114
-      Script: {instanceID: 12608}
+      Script: {instanceID: 12610}
     - Class: 114
-      Script: {instanceID: 12966}
+      Script: {instanceID: 12968}
     - Class: 114
-      Script: {instanceID: 13232}
+      Script: {instanceID: 13234}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13306}
     - Class: 114
-      Script: {instanceID: 13374}
+      Script: {instanceID: 13376}
     - Class: 114
-      Script: {instanceID: 13414}
+      Script: {instanceID: 13416}
     - Class: 114
-      Script: {instanceID: 13434}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13454}
+      Script: {instanceID: 13456}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -216,41 +217,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12378}
+      Script: {instanceID: 12174}
     - Class: 114
-      Script: {instanceID: 12398}
+      Script: {instanceID: 12380}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12400}
     - Class: 114
-      Script: {instanceID: 12642}
+      Script: {instanceID: 12630}
     - Class: 114
-      Script: {instanceID: 12652}
+      Script: {instanceID: 12644}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12654}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12826}
     - Class: 114
-      Script: {instanceID: 12900}
+      Script: {instanceID: 12852}
     - Class: 114
-      Script: {instanceID: 12966}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 13024}
+      Script: {instanceID: 12968}
     - Class: 114
-      Script: {instanceID: 13142}
+      Script: {instanceID: 13026}
     - Class: 114
-      Script: {instanceID: 13260}
+      Script: {instanceID: 13144}
     - Class: 114
-      Script: {instanceID: 13346}
+      Script: {instanceID: 13262}
     - Class: 114
-      Script: {instanceID: 13362}
+      Script: {instanceID: 13348}
     - Class: 114
-      Script: {instanceID: 13374}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13396}
+      Script: {instanceID: 13376}
     - Class: 114
-      Script: {instanceID: 13434}
+      Script: {instanceID: 13398}
+    - Class: 114
+      Script: {instanceID: 13436}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -390,7 +393,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 793f29f31993f1101ea7b77be286923c
+      Hash: c7ec273880c98a723e6f6dce1bbd1d7b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MinionMovement
@@ -544,6 +547,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 393ead2f4f200dd307c9b73ca5c8e05b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MinionTargetFindRange
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -918,7 +927,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 1684d59a50435d38a25edff2e21cf7ab
+      Hash: 9b701027cf4cee03c3780fd43f5d6a55
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TowerBulletMovement

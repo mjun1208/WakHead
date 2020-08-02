@@ -213,16 +213,16 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (transform.position.y <= MinYPos)
-                transform.position = new Vector3(transform.position.x, MinYPos, transform.position.z);
-            else
+            //if (transform.position.y <= MinYPos)
+            //    transform.position = new Vector3(transform.position.x, MinYPos, transform.position.z);
+            //else
                 transform.Translate(0, -CurrentSpeed * BoltNetwork.FrameDeltaTime, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (transform.position.y >= MaxYPos)
-                transform.position = new Vector3(transform.position.x, MaxYPos, transform.position.z);
-            else
+            //if (transform.position.y >= MaxYPos)
+            //    transform.position = new Vector3(transform.position.x, MaxYPos, transform.position.z);
+            //else
                 transform.Translate(0, CurrentSpeed * BoltNetwork.FrameDeltaTime, 0);
         }
 

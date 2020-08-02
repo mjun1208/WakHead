@@ -70,7 +70,7 @@ public class Creature : Bolt.EntityEventListener<ICreatureState>
     public IEnumerator ForcedMovement(Vector3 Target)
     {
         TargetPos = Target;
-        while (Vector3.Distance(this.transform.position, TargetPos) > 0.45f)
+        while (Vector3.Distance(this.transform.position, TargetPos) > 0.5f)
         {
             DoForcedMovement();
             yield return null;

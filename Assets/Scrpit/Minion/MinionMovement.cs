@@ -7,6 +7,8 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     public bool isAttack = false;
     public Creature Mycreature;
     public Rigidbody2D rigid;
+
+    public GameObject EnemyTower;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -46,11 +48,13 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     void ScaleChange()
     {
         transform.localScale = state.LocalScale;
+        //state.LocalScale = transform.localScale;
     }
 
     void RedTeamChange()
     {
         Mycreature.RedTeam = state.RedTeam;
+        //state.RedTeam = Mycreature.RedTeam;
     }
 
     void Update()
@@ -77,12 +81,10 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     {
         if (state.RedTeam)
         {
-            this.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
             Mycreature.sprite.color = new Color(1, 0, 0, 1);
         }
         else
         {
-            this.transform.localScale = new Vector3(-1.2f, 1.2f, 1.2f);
             Mycreature.sprite.color = new Color(0, 0, 1, 1);
         }
     }
@@ -98,26 +100,65 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     }
     void Attack()
     {
-        if (Vector3.Distance(Mycreature.TargetObject.transform.position, transform.position) <= 1.5f)
+        if (Mycreature.TargetObject != null)
         {
-            isAttack = true;
-            Mycreature.animator.SetBool("Attack", true);
+            if (Vector3.Distance(Mycreature.TargetObject.transform.position, transform.position) <= 0.7f)
+            {
+                isAttack = true;
+                Mycreature.animator.SetBool("Attack", true);
+            }
+            else
+            {
+                isAttack = false;
+                Mycreature.animator.SetBool("Attack", false);
+            }
         }
         else
         {
-            isAttack = false;
-            Mycreature.animator.SetBool("Attack", false);
+            if (Vector3.Distance(EnemyTower.transform.position, transform.position) <= 1.5f)
+            {
+                isAttack = true;
+                Mycreature.animator.SetBool("Attack", true);
+            }
+            else
+            {
+                isAttack = false;
+                Mycreature.animator.SetBool("Attack", false);
+            }
         }
     }
 
     void Move()
     {
-        if (!isAttack)
+        if (Mycreature.TargetObject != null)
         {
-            Vector3 Temp = new Vector3(Mycreature.TargetObject.transform.position.x - transform.position.x, Mycreature.TargetObject.transform.position.y - transform.position.y, 0);
-            Temp = Vector3.Normalize(Temp);
-            //rigid.MovePosition(this.transform.position + (Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime));
-            transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
+            if (Mycreature.TargetObject.transform.position.x < this.transform.position.x)
+                state.LocalScale = new Vector3(-1.2f, 1.2f, 1.2f);
+            else
+                state.LocalScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+            if (!isAttack)
+            {
+                Vector3 Temp = new Vector3(Mycreature.TargetObject.transform.position.x - transform.position.x, Mycreature.TargetObject.transform.position.y - transform.position.y, 0);
+                Temp = Vector3.Normalize(Temp);
+                //rigid.MovePosition(this.transform.position + (Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime));
+                transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
+            }
+        }
+        else
+        {
+            if (EnemyTower.transform.position.x < this.transform.position.x)
+                state.LocalScale = new Vector3(-1.2f, 1.2f, 1.2f);
+            else
+                state.LocalScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+            if (!isAttack)
+            {
+                Vector3 Temp = new Vector3(EnemyTower.transform.position.x - transform.position.x, EnemyTower.transform.position.y - transform.position.y, 0);
+                Temp = Vector3.Normalize(Temp);
+                //rigid.MovePosition(this.transform.position + (Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime));
+                transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
+            }
         }
     }
 
