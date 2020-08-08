@@ -8,7 +8,7 @@ public class MinionTargetFindRange : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (minion_script.Mycreature.TargetObject == null)
+        if (minion_script.Mycreature.TargetObject == null && !minion_script.isAttack)
         {
             if (collision.tag == "Player" || collision.tag == "Minion")
             {

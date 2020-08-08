@@ -64,7 +64,7 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
         {
             if (collision.tag == "Minion" || collision.tag == "Player")
             {
-                //collision.gameObject.GetComponent<Creature>().Life -= 2.6f;
+                collision.gameObject.GetComponent<Creature>().Life -= 2.6f;
                 BoltNetwork.Destroy(this.gameObject);
             }
 

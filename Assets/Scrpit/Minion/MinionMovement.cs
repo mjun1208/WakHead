@@ -9,6 +9,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     public Rigidbody2D rigid;
 
     public GameObject EnemyTower;
+    public bool CanAttack = false;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -102,7 +103,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     {
         if (Mycreature.TargetObject != null)
         {
-            if (Vector3.Distance(Mycreature.TargetObject.transform.position, transform.position) <= 0.7f)
+            if (CanAttack/*Vector3.Distance(Mycreature.TargetObject.transform.position, transform.position) <= 0.7f*/)
             {
                 isAttack = true;
                 Mycreature.animator.SetBool("Attack", true);
@@ -115,7 +116,9 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
         }
         else
         {
-            if (Vector3.Distance(EnemyTower.transform.position, transform.position) <= 1.5f)
+            isAttack = false;
+
+            if (CanAttack/*Vector3.Distance(EnemyTower.transform.position, transform.position) <= 1.5f*/)
             {
                 isAttack = true;
                 Mycreature.animator.SetBool("Attack", true);
@@ -128,6 +131,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
         }
     }
 
+
     void Move()
     {
         if (Mycreature.TargetObject != null)
@@ -137,7 +141,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
             else
                 state.LocalScale = new Vector3(1.2f, 1.2f, 1.2f);
 
-            if (!isAttack)
+            if (!CanAttack)
             {
                 Vector3 Temp = new Vector3(Mycreature.TargetObject.transform.position.x - transform.position.x, Mycreature.TargetObject.transform.position.y - transform.position.y, 0);
                 Temp = Vector3.Normalize(Temp);
@@ -152,7 +156,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
             else
                 state.LocalScale = new Vector3(1.2f, 1.2f, 1.2f);
 
-            if (!isAttack)
+            if (!CanAttack)
             {
                 Vector3 Temp = new Vector3(EnemyTower.transform.position.x - transform.position.x, EnemyTower.transform.position.y - transform.position.y, 0);
                 Temp = Vector3.Normalize(Temp);
@@ -160,6 +164,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
                 transform.Translate(Temp * Mycreature.MoveSpeed * BoltNetwork.FrameDeltaTime);
             }
         }
+        CanAttack = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
