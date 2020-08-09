@@ -34,6 +34,9 @@ public class MinionAttack : Bolt.EntityEventListener<IMinionState>
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!BoltNetwork.IsServer)
+            return;
+
         if (minion_script.Mycreature.TargetObject != null)
         {
             if (collision.gameObject == minion_script.Mycreature.TargetObject)
@@ -52,6 +55,9 @@ public class MinionAttack : Bolt.EntityEventListener<IMinionState>
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!BoltNetwork.IsServer)
+            return;
+
         if (minion_script.Mycreature.TargetObject != null)
         {
             if (collision.gameObject == minion_script.Mycreature.TargetObject)

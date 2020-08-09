@@ -35,6 +35,7 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     public override void Attached()
     {
         state.SetTransforms(state.CreatureTransform, transform);
+        state.SetAnimator(Mycreature.animator);
 
         if (entity.IsOwner)
         {
@@ -44,6 +45,8 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 
         state.AddCallback("LocalScale", ScaleChange);
         state.AddCallback("RedTeam", RedTeamChange);
+
+        state.Animator.applyRootMotion = entity.IsOwner;
     }
 
     void ScaleChange()

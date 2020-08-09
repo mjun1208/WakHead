@@ -41,8 +41,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -63,6 +65,7 @@ ScriptsOnlyBuild:
     - BoltEntity
     - BoltRuntimeSettings
     bolt.editor.dll:
+    - Bolt.Editor.CustomInspector.BoltEntityEditor
     - Bolt.Editor.Windows.BoltProjectWindow
     - Bolt.Editor.Windows.BoltScenesWindow
   sceneClasses:
@@ -94,45 +97,45 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11244}
+      Script: {instanceID: 11288}
     - Class: 114
-      Script: {instanceID: 11314}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11432}
+      Script: {instanceID: 11476}
     - Class: 114
-      Script: {instanceID: 11450}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11474}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 11486}
+      Script: {instanceID: 11530}
     - Class: 114
-      Script: {instanceID: 11942}
+      Script: {instanceID: 11986}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 12006}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 12084}
     - Class: 114
-      Script: {instanceID: 12126}
+      Script: {instanceID: 12170}
     - Class: 114
-      Script: {instanceID: 12364}
+      Script: {instanceID: 12408}
     - Class: 114
-      Script: {instanceID: 12380}
+      Script: {instanceID: 12424}
     - Class: 114
-      Script: {instanceID: 12610}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12968}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13276}
     - Class: 114
-      Script: {instanceID: 13306}
+      Script: {instanceID: 13348}
     - Class: 114
-      Script: {instanceID: 13376}
+      Script: {instanceID: 13418}
     - Class: 114
-      Script: {instanceID: 13416}
+      Script: {instanceID: 13458}
     - Class: 114
-      Script: {instanceID: 13436}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 13456}
+      Script: {instanceID: 13498}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -193,67 +196,67 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11244}
+      Script: {instanceID: 11288}
     - Class: 114
-      Script: {instanceID: 11314}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11432}
+      Script: {instanceID: 11476}
     - Class: 114
-      Script: {instanceID: 11450}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11474}
+      Script: {instanceID: 11518}
     - Class: 114
-      Script: {instanceID: 11490}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11582}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11700}
     - Class: 114
-      Script: {instanceID: 11866}
+      Script: {instanceID: 11910}
     - Class: 114
-      Script: {instanceID: 11942}
+      Script: {instanceID: 11986}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 12012}
     - Class: 114
-      Script: {instanceID: 12126}
+      Script: {instanceID: 12170}
     - Class: 114
-      Script: {instanceID: 12174}
+      Script: {instanceID: 12218}
     - Class: 114
-      Script: {instanceID: 12380}
+      Script: {instanceID: 12424}
     - Class: 114
-      Script: {instanceID: 12400}
+      Script: {instanceID: 12444}
     - Class: 114
-      Script: {instanceID: 12630}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 12644}
+      Script: {instanceID: 12686}
     - Class: 114
-      Script: {instanceID: 12654}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 12818}
+      Script: {instanceID: 12860}
     - Class: 114
-      Script: {instanceID: 12826}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 12852}
+      Script: {instanceID: 12894}
     - Class: 114
-      Script: {instanceID: 12902}
+      Script: {instanceID: 12944}
     - Class: 114
-      Script: {instanceID: 12968}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13026}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13144}
+      Script: {instanceID: 13186}
     - Class: 114
-      Script: {instanceID: 13262}
+      Script: {instanceID: 13304}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 13390}
     - Class: 114
-      Script: {instanceID: 13364}
+      Script: {instanceID: 13406}
     - Class: 114
-      Script: {instanceID: 13376}
+      Script: {instanceID: 13418}
     - Class: 114
-      Script: {instanceID: 13398}
+      Script: {instanceID: 13440}
     - Class: 114
-      Script: {instanceID: 13436}
+      Script: {instanceID: 13478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -393,7 +396,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: c7ec273880c98a723e6f6dce1bbd1d7b
+      Hash: 2bd8def9d1c243ad0dad8b44bb0d11ac
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MinionMovement
@@ -843,7 +846,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: f045e2c261489e54e0c7b1851db75907
+      Hash: 393ead2f4f200dd307c9b73ca5c8e05b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MinionAttack

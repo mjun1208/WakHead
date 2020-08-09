@@ -27,7 +27,9 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
         state.SetTransforms(state.TowerBulletTransform ,this.transform);
     }
 
-    private void Start()
+
+    // Update is called once per frame
+    void Update()
     {
         if (state.RedTeam)
         {
@@ -39,12 +41,8 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
             renderer.sprite = BlueBullet;
             trail.material = Bluematerial;
         }
-    }
 
 
-    // Update is called once per frame
-    void Update()
-    {
         if (!BoltNetwork.IsServer)
             return;
 
@@ -60,6 +58,9 @@ public class TowerBulletMovement : Bolt.EntityBehaviour<ITowerBulletState>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!BoltNetwork.IsServer)
+            return;
+
         if (collision.gameObject == TargetObject)
         {
             if (collision.tag == "Minion" || collision.tag == "Player")
