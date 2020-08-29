@@ -93,9 +93,9 @@ public class MinionAdmin : Bolt.GlobalEventListener
         if (!BoltNetwork.IsServer)
             return;
         GameObject temp = BoltNetwork.Instantiate(BoltPrefabs.Minion, Pos, Quaternion.identity);
-        temp.GetComponent<MinionMovement>().Mycreature.Life = 4;
-        temp.GetComponent<MinionMovement>().EnemyTower = Target;
-        temp.GetComponent<MinionMovement>().state.RedTeam = IsRed;
+        temp.GetComponentInChildren<MinionMovement>().Mycreature.Life = 4;
+        temp.GetComponentInChildren<MinionMovement>().EnemyTower = Target;
+        temp.GetComponentInChildren<MinionMovement>().state.RedTeam = IsRed;
     }
 
     public void GetEnemy()

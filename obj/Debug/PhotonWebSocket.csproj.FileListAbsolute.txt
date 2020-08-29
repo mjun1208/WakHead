@@ -542,5 +542,3 @@ D:\WakHead\Temp\bin\Debug\bolt.editor.xml
 D:\WakHead\Temp\bin\Debug\Newtonsoft.Json.xml
 D:\WakHead\Temp\bin\Debug\SyntaxTree.VisualStudio.Unity.Bridge.dll
 D:\WakHead\Temp\bin\Debug\SyntaxTree.VisualStudio.Unity.Messaging.dll
-D:\WakHead\Temp\bin\Debug\PhotonRealtime.dll
-D:\WakHead\Temp\bin\Debug\PhotonRealtime.pdb

@@ -9,7 +9,16 @@ public class PlayerAdmin : Bolt.GlobalEventListener
 {
     public override void SceneLoadLocalDone(string scene)
     {
-        BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(0, 0, 0), Quaternion.identity);
         BoltNetwork.SetPrefabPool(new PrefabPool());
+        //AnimalCrossing
+        //Normal_WakGood
+        if (BoltNetwork.IsServer)
+        {
+            BoltNetwork.Instantiate(BoltPrefabs.Normal_WakGood, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+        else {
+            BoltNetwork.Instantiate(BoltPrefabs.AnimalCrossing, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+
     }
 }

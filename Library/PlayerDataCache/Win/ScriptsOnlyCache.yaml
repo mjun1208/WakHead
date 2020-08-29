@@ -2,6 +2,8 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AnimEventListener
+    - AnimalCrossing_Skill_1
+    - AnimalCrossing_Skill_2
     - Bullet
     - BulletAdmin
     - BulletGrapic
@@ -12,12 +14,15 @@ ScriptsOnlyBuild:
     - MinionMovement
     - MinionTargetFindRange
     - NetworkManager
+    - Normal_WakGood_Skill_1
+    - Normal_WakGood_Skill_2
     - Particle
     - ParticleAdmin
     - PhotonInit
     - PlayerAttack
     - PlayerMovement
     - PlayerSkill_1
+    - PlayerSkill_2
     - Title
     - TowerBulletAdmin
     - TowerBulletMovement
@@ -65,7 +70,6 @@ ScriptsOnlyBuild:
     - BoltEntity
     - BoltRuntimeSettings
     bolt.editor.dll:
-    - Bolt.Editor.CustomInspector.BoltEntityEditor
     - Bolt.Editor.Windows.BoltProjectWindow
     - Bolt.Editor.Windows.BoltScenesWindow
   sceneClasses:
@@ -97,45 +101,45 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11358}
+      Script: {instanceID: 11316}
     - Class: 114
-      Script: {instanceID: 11476}
+      Script: {instanceID: 11436}
     - Class: 114
-      Script: {instanceID: 11494}
+      Script: {instanceID: 11454}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 11478}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11986}
+      Script: {instanceID: 11948}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12084}
+      Script: {instanceID: 12046}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12408}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12652}
+      Script: {instanceID: 12624}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 12984}
     - Class: 114
-      Script: {instanceID: 13276}
+      Script: {instanceID: 13250}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 13322}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13392}
     - Class: 114
-      Script: {instanceID: 13458}
+      Script: {instanceID: 13432}
     - Class: 114
-      Script: {instanceID: 13478}
+      Script: {instanceID: 13452}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13472}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -196,67 +200,77 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11358}
+      Script: {instanceID: 11316}
     - Class: 114
-      Script: {instanceID: 11476}
+      Script: {instanceID: 11364}
+    - Class: 114
+      Script: {instanceID: 11436}
+    - Class: 114
+      Script: {instanceID: 11454}
+    - Class: 114
+      Script: {instanceID: 11478}
     - Class: 114
       Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11534}
+      Script: {instanceID: 11660}
     - Class: 114
-      Script: {instanceID: 11582}
+      Script: {instanceID: 11870}
     - Class: 114
-      Script: {instanceID: 11700}
+      Script: {instanceID: 11920}
     - Class: 114
-      Script: {instanceID: 11910}
+      Script: {instanceID: 11948}
     - Class: 114
-      Script: {instanceID: 11986}
+      Script: {instanceID: 11974}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 12132}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 12180}
     - Class: 114
-      Script: {instanceID: 12218}
+      Script: {instanceID: 12274}
     - Class: 114
-      Script: {instanceID: 12424}
+      Script: {instanceID: 12308}
     - Class: 114
-      Script: {instanceID: 12444}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12672}
+      Script: {instanceID: 12412}
     - Class: 114
-      Script: {instanceID: 12686}
+      Script: {instanceID: 12644}
     - Class: 114
-      Script: {instanceID: 12696}
+      Script: {instanceID: 12658}
     - Class: 114
-      Script: {instanceID: 12860}
+      Script: {instanceID: 12668}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 12894}
+      Script: {instanceID: 12840}
     - Class: 114
-      Script: {instanceID: 12944}
+      Script: {instanceID: 12866}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 12916}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 12938}
     - Class: 114
-      Script: {instanceID: 13186}
+      Script: {instanceID: 12984}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13042}
     - Class: 114
-      Script: {instanceID: 13390}
+      Script: {instanceID: 13160}
     - Class: 114
-      Script: {instanceID: 13406}
+      Script: {instanceID: 13278}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13440}
+      Script: {instanceID: 13380}
     - Class: 114
-      Script: {instanceID: 13478}
+      Script: {instanceID: 13392}
+    - Class: 114
+      Script: {instanceID: 13414}
+    - Class: 114
+      Script: {instanceID: 13452}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -316,6 +330,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 15f4684fd66d91461b5d1342462736d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Normal_WakGood_Skill_1
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -432,7 +452,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 3946b9de72d29dd5d3f720324439a257
+      Hash: 15f4684fd66d91461b5d1342462736d3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerAttack
@@ -484,6 +504,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
+  - hash:
+      serializedVersion: 2
+      Hash: d8e30480057aafaf590e03e35f1650d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Normal_WakGood_Skill_2
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -576,10 +602,28 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
+      Hash: db07386df03f267c15186ec599aaad76
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AnimalCrossing_Skill_2
+  - hash:
+      serializedVersion: 2
+      Hash: 15f4684fd66d91461b5d1342462736d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Skill_1_Base
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 15f4684fd66d91461b5d1342462736d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AnimalCrossing_Skill_1
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -616,6 +660,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonBolt.dll
     namespaceName: 
     className: BoltDebugStart
+  - hash:
+      serializedVersion: 2
+      Hash: 15f4684fd66d91461b5d1342462736d3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Skill_2_Base
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -684,7 +734,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: d98d4c947ca9467b29bf8ef2445d51ff
+      Hash: ba8ae64412e9ee9ff90c03bfb761bf3b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -780,6 +830,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: c26c1c46a2b85ad1236166c34a9a635f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerSkill_2
+  - hash:
+      serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -798,7 +854,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 15f4684fd66d91461b5d1342462736d3
+      Hash: 7b7734a9d373f267986bcfcdc7e04c42
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSkill_1

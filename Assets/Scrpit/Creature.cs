@@ -29,9 +29,9 @@ public class Creature : Bolt.EntityEventListener<ICreatureState>
     {
     }
 
-    public void KnockBack(float power, bool stun)
+    public void KnockBack(float power, Vector2 dir , bool stun)
     {
-        Vector3 Target = this.transform.position + new Vector3(power, 0, 0);
+        Vector3 Target = this.transform.position + new Vector3(dir.x * power, dir.y * power, 0);
         TargetPos = Target;
 
         var forcedmovement = ForcedMovementEvent.Create(entity);

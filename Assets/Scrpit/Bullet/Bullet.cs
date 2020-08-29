@@ -56,12 +56,8 @@ public class Bullet : Bolt.EntityEventListener<IBulletState>
 
         Vector2 Dir = CollObject.transform.position - player.transform.position;
         Dir.Normalize();
-        float power;
-        if (Dir.x > 0)
-            power = 2f;
-        else
-            power = -2f;
-        tempCreatureScript.KnockBack(power, true);
+
+        tempCreatureScript.KnockBack(2f, new Vector2(Dir.x, 0), true);
 
         BoltNetwork.Destroy(this.gameObject);
         //this.gameObject.SetActive(false);

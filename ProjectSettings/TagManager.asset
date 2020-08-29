@@ -7,6 +7,7 @@ TagManager:
   - SkyBlock
   - Minion
   - Bullet
+  - Minion_HitColl
   layers:
   - Default
   - TransparentFX

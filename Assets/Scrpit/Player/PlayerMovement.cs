@@ -26,7 +26,7 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
 
     public Collider2D collider;
      
-    private bool Skill_CanMove = true;
+    public bool Skill_CanMove = true;
 
     public SpriteRenderer PlayerArrow;
 
@@ -149,17 +149,6 @@ public class PlayerMovement : Bolt.EntityBehaviour<IPlayerState>
         CurPos = this.transform.position;
 
         //Move();   
-        if (Mycreature.animator.GetBool("Skill_1") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
-        {
-            Mycreature.animator.SetBool("Skill_1", false);
-            Skill_CanMove = true;
-        }
-
-        if (Mycreature.animator.GetBool("Skill_2") && Mycreature.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
-        {
-            Mycreature.animator.SetBool("Skill_2", false);
-            Skill_CanMove = true;
-        }
 
         if (Mycreature.CanMove && Skill_CanMove && !Mycreature.Stun)
         {

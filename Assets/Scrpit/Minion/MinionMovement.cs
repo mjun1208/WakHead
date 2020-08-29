@@ -10,6 +10,8 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 
     public GameObject EnemyTower;
     public bool CanAttack = false;
+
+    bool IsDead = false;
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     //{
     //    if (stream.IsWriting)
@@ -63,8 +65,10 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
 
     void Update()
     {
-         ChangeTeam();
-         Dead();
+        ChangeTeam();
+
+        if (!IsDead)
+            Dead();
 
          if (!BoltNetwork.IsServer)
             return;
@@ -97,11 +101,24 @@ public class MinionMovement : Bolt.EntityEventListener<IMinionState>
     {
         if (Mycreature.Life <= 0)
         {
+            IsDead = true;
             ParticleAdmin.instance.SpawnParticle(this.gameObject.transform.position);
-            BoltNetwork.Destroy(this.gameObject);
-            //this.gameObject.SetActive(false);//원래는 죽는 아니메로 이동
+            StartCoroutine(DestroyObject());
+            //BoltNetwork.Destroy(this.gameObject);
         }
     }
+
+    IEnumerator DestroyObject()
+    {
+        for (int i = 0; i < this.transform.childCount; i++)
+            this.transform.GetChild(i).gameObject.SetActive(false);
+
+        this.GetComponent<Collider2D>().enabled = false;
+
+        yield return new WaitForSeconds(BoltNetwork.FrameDeltaTime);
+        BoltNetwork.Destroy(this.gameObject);
+    }
+
     void Attack()
     {
         if (Mycreature.TargetObject != null)
